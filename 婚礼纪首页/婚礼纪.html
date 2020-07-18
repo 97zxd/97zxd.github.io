@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="iscroll.Veb.js"></script>
+    <script src="zepto.js"></script>
+    <style>
+        html{
+            font-size:26.667vw;
+        }
+        *{
+            margin:0;
+            padding:0
+        }
+        header,footer{
+            position: absolute;
+            left:0;
+            width:100%;
+            line-height: 0.5rem;
+            background: #333;
+            text-align: center;
+            color:white;
+            font-size:0.16rem
+        }
+        header{
+            top:0
+        }
+        footer{
+            bottom:0
+        }
+        main{
+            position: absolute;
+            top:0.5rem;
+            bottom:0.5rem;
+            width:100%;
+            background: #f0f0f0;
+        }
+        li{
+            list-style: none;
+        }
+
+        #list{
+            width: 3.55rem;
+            padding:0.1rem;
+            background: white;
+            overflow: hidden;
+        }
+        #list li{
+            width:1.775rem;
+            padding:0.1rem;
+            box-sizing: border-box;
+            float:left;
+            margin:0.1rem 0;
+        }
+        #list img{
+            width: 100%;
+            height: 1.575rem;
+            display: block;
+        }
+        #list h5{
+            line-height: 0.4rem;
+            font-size:0.16rem;
+            text-align: center;
+            /* 溢出显示省略号 */
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .tip{
+            line-height: 40px;
+            font-size:0.14rem;
+            text-align: center;
+            color:#3b3b3b
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        我是固定头部
+    </header>
+
+    <main id="content_view">
+        <!-- 主体内容区域 -->
+        <div class="content">
+            <div class="tip">下拉刷新</div>
+            <ul id="list">
+                
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        我是固定底部导航
+    </footer>
+</body>
+<script>
+    var isc=new iScroll("content_view",{
+        topOffset:40,
+        y:-40,
+        onScrollMove:function(){
+
+            if(this.y>50){
+                this.minScrollY=0;
+                $(".tip").html("松开立即刷新")
+            }else{
+                this.minScrollY=-40;
+                $(".tip").html("下拉刷新")
+            }
+
+        },
+        onScrollEnd:function(){
+
+            if(this.minScrollY==0){
+
+                $(".tip").html("正在刷新中...")
+
+                // 重新请求数据 渲染页面
+                render();
+
+            }
+
+        }
+    })
+
+
+    render();
+
+    function render(){
+        $.get("http://vebcoder.cn:9527/api/goodList",{
+            page:1
+        },function(res){
+            
+            // 请求成功 渲染页面
+            var html=""
+            for(var i=0;i<res.length;i++){
+
+                html+="<li><img src='"+res[i].img_list_url+"'><h5>"+res[i].title+"</h5></li>"
+
+            }
+            // 插入页面
+            $("#list").html(html);
+
+            // iScroll重新计算尺寸
+            isc.refresh();
+
+        })
+    }
+
+</script>
+</html>
