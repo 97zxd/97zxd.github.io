@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #signerList {
+            width: 1000px;
+            overflow: hidden;
+            /* display: flex; */
+        }
+
+        #signerList li {
+            float: left;
+            width: 100px;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        #signerList img {
+            width: 80px;
+            height: 80px;
+        }
+
+        h4 {
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="getData">获取数据</button>
+    <ul id="signerList">
+
+    </ul>
+</body>
+<script>
+
+    getData.onclick = function () {
+        // console.log("ok");
+        var nowindex = 1;
+        function content(nowindex) {
+            console.log(nowindex);
+            // 创建请求对象
+            var xhr = new XMLHttpRequest();
+            //指定请求方式和请求路径
+            xhr.open("GET", "http://vebcoder.cn:9090/artist/artistInfo?category=0&pn=" + nowindex + "&rn=100")
+            //发送请求
+            xhr.send();
+            //监听请求成功的回调函数
+            xhr.onreadystatechange = function () {
+                //响应成功
+                if (xhr.status == 200 && xhr.readyState == 4) {
+                    // console.log(xhr.responseText);
+                    // 拿到请求结果
+                    var res = JSON.parse(xhr.responseText);
+                    console.log(res);
+                    var list = res.data.artistList;
+                    //展示到页面
+                    // var html = "";
+                    var html;
+                    for (var i = 0; i < list.length; i++) {
+                        html += '<li><img src="' + list[i].pic + '" alt=""><h4>' + list[i].name + '</h4></li>'
+
+                    }
+                    signerList.innerHTML += html;
+
+                }
+            }
+        }
+        content(nowindex);
+
+        window.onscroll = function () {
+            console.log("滚动了");
+            var st = document.body.scrollTop || document.documentElement.scrollTop;//滚动高度
+            // console.log(st);
+            var ch = document.body.clientHeight || document.documentElement.clientHeight;//全文高度
+            // console.log(document.body.clientHeight);
+            if (ch - st == window.innerHeight) {
+                console.log("到头")
+                nowindex++;
+                content(nowindex);
+            }
+        }
+
+    }
+
+
+</script>
+
+</html>
