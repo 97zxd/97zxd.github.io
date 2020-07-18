@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打地鼠</title>
+    <link rel="stylesheet" href="icon.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            /* font-size: 1.60rem; */
+            color: #333;
+        }
+        html{
+            /* 设计稿是375px   10000/375=26.667*/
+            font-size: 26.667vw;
+        }
+        body {
+           
+            /* height: 100vh; */
+            background-image: url(images/bg.jpg);
+            /* 禁止鼠标选中复制文本  -webkit(谷歌) -moz(火狐) */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            /* 自定义鼠标样式 */
+            cursor: url(images/cursor.png), pointer;
+        }
+
+        .voice {
+            position: absolute;
+            top: 0.15rem;
+            left: 0.15rem;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.15rem;
+        }
+
+        .score {
+            font-size: 0.2rem;
+            height: 0.3rem;
+            width: 2.50rem;
+            font-weight: bolder;
+            color: red;
+            /* background-color: black; */
+            text-align: center;
+            margin: 0.2rem auto ;
+            line-height: 0.3rem;
+        }
+        table{
+            border-spacing:0.02rem;
+            width: 3rem;
+            height: 3rem; 
+            position: absolute;
+            left: 50%;
+            margin-left: -1.6rem;
+            top: 50%;
+            margin-top: -2.5rem;
+            /* background-color: red; */
+        }
+        td{
+            font-size: 0rem;
+            /* background-color: aquamarine; */
+            /* width: 0.525rem; */
+            width: 0.8rem;
+            height: 0.8rem;
+            overflow: hidden;
+            text-align: center;
+            background-image: url(images/hole.png);
+            background-size: 0.72rem 0.37rem;
+            background-position: center bottom;
+            /* background-position-x: center; */
+            /* background-position-y: bottom; */
+            background-repeat: no-repeat;
+
+            /* td标签比较特殊，默认下，td的内容是垂直居中的，上下空白的部分它是用内边距填充的，为了让内容垂直居中，它始终让上下两侧的内边距相等。 */
+            vertical-align: bottom;
+        }
+        img{
+            padding: 0 0.1rem;
+            width: 0.6rem;
+            height: 0;
+            animation-duration: 0.3s;
+            /* 动画结束时，让元素保持动画结束时的样式 */
+            animation-fill-mode: both;
+            animation-timing-function: linear;
+            margin-bottom: 0.1rem;
+        }
+        @keyframes mouseUp{
+            0%{
+                height:0px;
+            }
+            100%{
+                height: 0.5rem;
+            }
+        }
+        @keyframes mouseDown {
+            0%{
+                height: 0.5rem;
+            }
+            100%{
+                height: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 播放音频标签：背景音乐和打中地鼠 -->
+    <!-- loop:循环播放 -->
+    <audio id="bg-music" src="audios/music.mp3" loop></audio>
+    <audio id="dz-music" src="audios/dazhong.wav"></audio>
+
+    <!-- 是否静音 -->
+    <div class="voice">
+        <i class="iconfont icon-iconfront-"></i>
+        <br>
+        <span>静音</span>
+    </div>
+
+    <!-- 得分 -->
+    <div class="score">得分：0分</div>
+
+    <!-- 地鼠部分 -->
+    <table>
+        <tr>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+        </tr>
+        <tr>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            
+        </tr> 
+        <tr>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+        </tr>
+        <tr>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+            <td><img src="images/mouse.png" alt=""></td>
+        </tr>
+    </table>
+</body>
+<script>
+    // var voice=document.getElementsByClassName("voice")[0];
+    var voice = document.querySelector(".voice");
+    var bgAudio = document.querySelector("#bg-music");
+    console.log(bgAudio);
+
+    // bgAudio.paused为true表示处于暂停状态
+    // console.log("刚开始点击",bgAudio.paused);
+    voice.onclick = function (e) {
+        // 判断当前背景音乐是否在播放
+        if (bgAudio.paused === true) {
+            console.log("刚开始点击",bgAudio.paused);
+            // console.log("改变状态 开始播放了");
+            // bgAudio这个Audio标签有一个play函数可以播放音视频
+            bgAudio.play();
+            // 改为播放的文本内容（字和图标）
+            document.querySelector(".voice>i").className = "iconfont icon-xiaolaba";
+            document.querySelector(".voice>span").innerHTML = "播放中";
+        } else {
+            console.log("改变状态 开始停止播放了 没声音咯");
+            // 停止播放  与bgAudio.play()相对应
+            bgAudio.pause();
+            document.querySelector(".voice>i").className = "iconfont icon-iconfront-";
+            document.querySelector(".voice>span").innerHTML = "静音喽";
+        }
+    }
+
+    var imgs=document.querySelectorAll("td>img")
+    // 随机16个对象
+    function showMouse(){
+        var randomNum=Math.floor(Math.random()*20);//[0,19]
+        var mouseImg=imgs[randomNum];
+
+        // 动画的形式让地鼠出现
+        mouseImg.style.animationName="mouseUp";
+
+        // 出现时间持续1s
+        setTimeout(function(){
+            mouseImg.style.animationName="mouseDown";
+        },3000)
+    }
+
+    // 开启定时器 每800毫秒执行一次
+    setInterval(showMouse,800);
+    
+    var totalScore=0;
+    // 遍历所有的img对象
+    for(var i=0;i<imgs.length;i++){
+        var mouse=imgs[i];
+        // 鼠标按下
+        mouse.onmousedown=function(){
+            console.log("按下");
+            console.log(document.body.style.cursor.url);
+            //鼠标变化
+            document.body.style.cursor="url(images/cursor-down.png),pointer";
+            console.log(document.body.style.cursor.url);
+            // 音效变
+            document.getElementById("dz-music").play();  
+        }
+        mouse.onmouseup=function(){
+            //鼠标变化
+            document.body.style.cursor="url(images/cursor.png),pointer"
+        }
+        // 完整的点击，从鼠标的down到up
+        mouse.onclick=function(){
+            this.style.animationName="mouseDown";
+            totalScore++;
+            document.getElementsByClassName("score")[0].textContent="得分"+totalScore;
+        }
+    }
+
+</script>
+
+</html>
