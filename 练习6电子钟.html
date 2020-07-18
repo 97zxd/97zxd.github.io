@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>电子表</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: solid 5px #5f5f5f;
+        position: relative;
+        margin: 0 auto;
+      }
+      #div {
+        position: absolute;
+        height: 50px;
+        width: 180px;
+        margin-top: 36%;
+        margin-left: 3%;
+        border: solid 5px #5f5f5f;
+        display: inline-block;
+        text-align: center;
+        line-height: 50px;
+        font-size: 28px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div id="div"></div>
+    </div>
+    <script>
+      function startime() {
+        var t = new Date();
+        var h = t.getHours();
+        var m = t.getMinutes();
+        var s = t.getSeconds();
+        // document.getElementById("div").innerHTML = h + ':' + m + ':' + s;
+        m = checkTime(m);
+        s = checkTime(s);
+        t = setTimeout("startime()", 1000);
+        // console.log("OOOOOK");
+        //1000微秒=1秒
+        document.getElementById("div").innerHTML = h + ":" + m + ":" + s;
+      }
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+      startime();
+    </script>
+  </body>
+</html>
