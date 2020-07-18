@@ -1,0 +1,498 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 12px;
+}
+
+li,
+ul
+{
+    list-style: none;
+}
+
+.w {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.iconfont {
+    font-family: iconfont !important;
+    font-size: 16px;
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.top {
+    height: 29px;
+    line-height: 29px;
+    border-bottom: 1px solid #e8e8e8;
+    background-color: #f1f1f1;
+    font-size: 12px;
+}
+
+.topmain {
+    position: relative;
+    color: #525252;
+    z-index: 8;
+}
+
+.topmain a:hover {
+    color: #f60;
+}
+
+.topmain .iconfont {
+    font-size: 15px;
+    margin: 0px 3px 0px 0px;
+    color: #dc2a49;
+    display: inline-block;
+    height: 16px;
+    line-height: 14px;
+}
+
+.topmain .arr {
+    color: #a1a0a7;
+    width: 10px;
+    margin: 0px 0px 0px 2px;
+    transition: all 0.3s;
+}
+
+.topmainleft .phone .arr::after ,.topmainright a::after{
+    content: "";
+    float: right;
+    width: 1px;
+    height: 12px;
+    border-right: solid 1px #d9d9d9;
+    position: absolute;
+    right: -1px;
+    top: 8px;
+}
+
+.phone,
+.topmainleft a {
+    padding: 0px 12px;
+    float: left;
+    position: relative;
+    color: #525252;
+}
+
+
+.phone {
+    padding: 0;
+}
+
+.phonecontent {
+    display: none;
+    position: absolute;
+    left: -1px;
+    top: 29px;
+    z-index: 10;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    width: 150px;
+    border-bottom: none;
+}
+
+.phonecontent dl dt {
+    width: 122px;
+    height: 145px;
+    float: left;
+    border-bottom: solid 1px #e0e0e0;
+    padding: 16px 14px;
+    color: #666;
+    line-height: 35px;
+}
+
+.phonecontent dl dt img {
+    width: 122px;
+    height: 122px;
+    display: block;
+}
+
+.phone .on {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-width: 0px 1px;
+    padding: 0;
+}
+
+.welcome{
+    float: left;
+    padding: 0 8px;
+    color: #767676;
+}
+
+.topmainright {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 2;
+}
+
+.topmainright a,
+.topDown {
+    float: left;
+    padding: 0 12px;
+    position: relative;
+    color: #525252;
+}
+
+.topDown {
+    padding: 0px;
+    /* float: left;
+position: relative;
+color: #525252; */
+}
+
+.topDowncontent {
+    display: none;
+    width: 100%;
+    left: -1px;
+    /* padding: 0 15px; */
+    z-index: 29;
+    text-align: left;
+    top: 29px;
+    background-color: #fff;
+    border: solid 1px #e0e0e0;
+    position: absolute;
+}
+
+.topmainright .topDowncontent,
+.topmainright .topDowncontent a {
+    line-height: 24px;
+    padding: 0;
+    text-align: center;
+}
+
+.topDowncontent a {
+    display: block;
+    float: none;
+}
+
+.topDown .fuwunav {
+    width: 176px;
+    padding: 0 15px;
+    text-align: left;
+    line-height: 24px;
+}
+
+.topDown .fuwunav dl dt,
+.topDown .netnav dl dt {
+    font-weight: bold;
+    color: #4d4d4d;
+}
+
+.topDown .fuwunav dl dd {
+    display: inline-block;
+    width: 86px;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+}
+
+.topDown .fuwunav dl dd a ,
+.topDown .netnav dl dd a {
+    text-align: left;
+}
+
+.topDown .netnav {
+    width: 276px;
+    left: -207px;
+    padding: 0 15px;
+    line-height: 24px;
+    text-align: left;
+}
+.topDown .netnav dl{
+    border-bottom: solid 1px #ededed;
+    padding: 10px 0px;
+}
+.topDown .netnav dl dd{
+    display: inline-block;
+    width: 66px;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+}
+
+.header {
+    width: 100%;
+    min-width: 1200px;
+    height: 80px;
+    padding: 30px 0 20px;
+    background-color: #fff;
+}
+
+.headermain {
+    /* background-color: aqua; */
+    height: 80px;
+}
+
+.headerlogo {
+    width: 208px;
+    height: 80px;
+    float: left;
+}
+
+.logofont {
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    padding: 25px 0px 25px 30px;
+    font-size: 21px;
+}
+
+.headernum {
+    width: 192px;
+    float: right;
+    padding: 12px 0px 18px 50px;
+    line-height: 25px;
+    position: relative;
+}
+
+.headernum h3 {
+    font-size: 14px;
+    font-weight: normal;
+    color: #666;
+    text-align: left;
+}
+
+.headernum .iconfont {
+    position: absolute;
+    left: 0;
+    top: 28px;
+    font-size: 40px;
+    color: #a9a9a9;
+}
+
+.headernum .textFont {
+    font-size: 26px;
+    color: #e02445;
+}
+
+.banner {
+    width: 100%;
+    height: 580px;
+    background-color: #3d82e1;
+    position: relative;
+}
+
+.loginBox {
+    position: absolute;
+    left: 50%;
+    top: 90px;
+    margin-left: 210px;
+    width: 330px;
+    padding: 25px 30px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    z-index: 1;
+
+}
+
+.loginBox h4 {
+    font-size: 20px;
+    padding-bottom: 20px;
+    font-weight: normal;
+}
+
+.loginBox .errorTips {
+    height: 30px;
+    line-height: 30px;
+    margin-top: -20px;
+    color: #f00;
+}
+
+.loginInput {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.loginBox .iconTitle {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    background-color: #ddd;
+    color: #fff;
+    font-size: 20px;
+}
+
+.loginInput input {
+    padding: 0px 10px 0px 55px;
+    width: 263px;
+    height: 42px;
+    border: 1px solid #e3e3e3;
+    font-size: 14px;
+    box-sizing: content-box;
+}
+
+.loginInput .choose {
+    cursor: pointer;
+    color: #4d4d4d;
+}
+
+.loginInput .choose input {
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    margin-top: -2px;
+}
+.forget{
+    float: right;
+    color: #4d4d4d;
+}
+.loginBtn{
+    padding: 5px 0px 20px
+}
+.loginBtn input{
+    display: block;
+    width: 100%;
+    line-height: 42px;
+    background-color: #e02445;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+.loginBox .last_a{
+    text-align: right;
+    color: #888;
+    display: block;
+}
+.bannerbox{
+    width: 1200px;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+}
+.bannerbox a{
+    display: block;
+}
+
+.footer {
+    overflow: hidden;
+    padding: 40px 0px 20px;
+}
+
+.footer .footercontent {
+    width: 760px;
+    float: left;
+}
+
+.footer .footercontent .footernav {
+    height: 24px;
+    line-height: 24px;
+    color: #666;
+}
+
+.footer .footercontent .footernav a {
+    color: #666;
+    margin: 0 15px 0px 0px;
+    font-size: 14px;
+}
+
+.footer .footercontent .footerCopyright {
+    height: 32px;
+    line-height: 32px;
+    color: #999;
+}
+
+.footer .footercontent .footerCopyright a {
+    color: #333;
+}
+
+.footerimg {
+    height: 31px;
+    padding-top: 15px;
+    margin: 15px auto;
+}
+
+.footerimg .img {
+    background-image: url(http://u.qihuiwang.com/images/login/copyright.png);
+    width: 88px;
+    height: 31px;
+    display: inline-block;
+    margin-right: 4px;
+    opacity: 1;
+}
+
+.footer .img1 {
+    width: 87px;
+    background-position: 0px 0px;
+}
+
+.footer .img2 {
+    width: 87px;
+    background-position: -92px 0px;
+}
+
+.footer .img3 {
+    width: 87px;
+    background-position: -182px 0px;
+}
+
+.footer .img4 {
+    width: 107px;
+    background-position: -272px 0px;
+}
+
+.footer .img5 {
+    width: 87px;
+    background-position: -383px 0px;
+}
+
+.footer .img6 {
+    width: 95px;
+    background-position: -474px 0px;
+}
+
+.footer .guanzhu {
+    width: 110px;
+    height: 120px;
+    float: right;
+    padding-left: 40px;
+    border-left: 1px solid #000;
+}
+
+.footer .guanzhu .title {
+    font-size: 14px;
+    padding-left: 15px;
+    padding-bottom: 6px;
+}
+
+.footer .guanzhu li {
+    line-height: 30px;
+}
+
+.footer .guanzhu a {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    overflow: hidden;
+    margin-left: 12px;
+    color: #d3d3d3;
+    font-size: 34px;
+    transition: all 1s;
+}
+
+.footer .guanzhu a:hover {
+    color: #e02445;
+    transform: rotate(360deg);
+}
