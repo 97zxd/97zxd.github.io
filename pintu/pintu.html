@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 800px;
+            height: 800px;
+            position: relative;
+            background-color: black;
+        }
+
+        #box div {
+            width: 200px;
+            height: 200px;
+            background-image: url(bg.jpg);
+            position: absolute;
+            line-height: 200px;
+            text-align: center;
+            font-size: 50px;
+            transition: all 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+</body>
+<script>
+
+    var position_list = [];//存储坑的位置
+
+    var r = random(15);//0-15随机出一个设置为空元素
+
+    function random(a) {//0-a的整数
+        return Math.floor(Math.random() * (a + 1));
+
+    }
+
+    for (var i = 0; i < 4; i++) {//行
+        for (var j = 0; j < 4; j++) {//列
+            var node = document.createElement("div");
+
+            //dom中的位置 index是加的编号
+            position_list.push({
+                left: j * 200,
+                top: i * 200,
+                index: i * 4 + j,
+            })
+            // console.log(position_list[1]);
+
+            //拼图原来正确的位置
+            // node.style.left = j * 200 + "px";
+            // node.style.top = i * 200 + "px";
+
+            //设置背景图位置
+            node.style.backgroundPosition = -j * 200 + "px " + (-i * 200) + "px";
+            node.innerHTML = i * 4 + j;
+
+            if (i * 4 + j == r) {//背景图为空
+                node.style.background = "none";
+                node.id = "empty_node";//空节点
+            }
+
+            box.appendChild(node);
+
+        }
+    }
+
+
+    // 复制一份位置信息
+    var position_list2=JSON.parse(JSON.stringify(position_list));
+
+
+    //16个元素（拼图小块）放入指定位置
+    for (var i = 0; i < box.children.length; i++) {
+        //随机位置
+        var ran = random(position_list.length - 1);
+
+        box.children[i].style.left = position_list[ran].left + "px";
+        box.children[i].style.top = position_list[ran].top + "px";
+
+        //记录元素使用的索引编号position_list[ran].index
+        box.children[i].position_index = position_list[ran].index
+
+        //防止出现过的背景位置再次出现 形成重叠
+        position_list.splice(ran, 1);
+    }
+
+
+    // 快速复位代码
+    for (var i = 0; i < box.children.length; i++) {
+
+        box.children[i].style.left = position_list2[i].left + "px";
+        box.children[i].style.top = position_list2[i].top + "px";
+        // 记录一下元素使用的背景编号
+        box.children[i].position_index = position_list2[i].index;
+    }
+
+
+    document.onkeydown = function (e) {
+        var keycode = e.which || e.keycode;
+
+        // console.log(empty_node_left+200);
+        // console.log(empty_node_top);
+
+        if (keycode == 37) {
+            console.log("左");
+
+            var empty_node_left = parseInt(empty_node.style.left);
+            var empty_node_top = parseInt(empty_node.style.top);
+            for (var i = 0; i < box.children.length; i++) {
+                // console.log(box.children[i].style.left)
+                var move_left = parseInt(box.children[i].style.left);
+                var move_top = parseInt(box.children[i].style.top);
+                // console.log(move_left);
+                // console.log(move_top);
+                if (empty_node_left + 200 == move_left && (empty_node_top == move_top)) {
+                    console.log("执行了");
+                    box.children[i].style.left = empty_node_left + "px";
+                    empty_node.style.left = move_left + "px";
+                    var index = box.children[i].position_index;
+                    box.children[i].position_index = empty_node.position_index;
+                    empty_node.position_index = index;
+
+                    check();
+
+                }
+
+            }
+        }
+        else if (keycode == 38) {
+            console.log("上");
+
+
+            var empty_node_left = parseInt(empty_node.style.left);
+            var empty_node_top = parseInt(empty_node.style.top);
+
+            for (var i = 0; i < box.children.length; i++) {
+                // console.log(box.children[i].style.left)
+                var move_left = parseInt(box.children[i].style.left);
+                var move_top = parseInt(box.children[i].style.top);
+                // console.log(move_left);
+                // console.log(move_top);
+                if (empty_node_top + 200 == move_top && (empty_node_left == move_left)) {
+                    console.log("执行了");
+                    box.children[i].style.top = empty_node_top + "px";
+                    empty_node.style.top = move_top + "px";
+                    var index = box.children[i].position_index;
+                    box.children[i].position_index = empty_node.position_index;
+                    empty_node.position_index = index;
+
+                    check();
+
+
+                }
+
+            }
+        }
+        else if (keycode == 39) {
+            console.log("右");
+
+
+            var empty_node_left = parseInt(empty_node.style.left);
+            var empty_node_top = parseInt(empty_node.style.top);
+
+            for (var i = 0; i < box.children.length; i++) {
+                // console.log(box.children[i].style.left)
+                var move_left = parseInt(box.children[i].style.left);
+                var move_top = parseInt(box.children[i].style.top);
+                // console.log(move_left);
+                // console.log(move_top);
+                if (empty_node_left - 200 == move_left && (empty_node_top == move_top)) {
+                    console.log("执行了");
+                    box.children[i].style.left = empty_node_left + "px";
+                    empty_node.style.left = move_left + "px";
+                    var index = box.children[i].position_index;
+                    box.children[i].position_index = empty_node.position_index;
+                    empty_node.position_index = index;
+
+                    check();
+
+                }
+
+            }
+        }
+        else if (keycode == 40) {
+            console.log("下")
+
+            var empty_node_left = parseInt(empty_node.style.left);
+            var empty_node_top = parseInt(empty_node.style.top);
+            for (var i = 0; i < box.children.length; i++) {
+                // console.log(box.children[i].style.left)
+                var move_left = parseInt(box.children[i].style.left);
+                var move_top = parseInt(box.children[i].style.top);
+                // console.log(move_left);
+                // console.log(move_top);
+                if (empty_node_top - 200 == move_top && (empty_node_left == move_left)) {
+                    console.log("执行了");
+                    box.children[i].style.top = empty_node_top + "px";
+                    empty_node.style.top = move_top + "px";
+                    var index = box.children[i].position_index;
+                    box.children[i].position_index = empty_node.position_index;
+                    empty_node.position_index = index;
+
+                    check();
+
+                }
+
+            }
+        }
+
+    }
+
+    // }
+
+
+
+    // 成功验证
+    // 遍历16个元素   在DOM结构中的编号 是否跟位置编号保持一致
+    function check() {
+        var num = 0;
+        for (var i = 0; i < box.children.length; i++) {
+
+            if (box.children[i].position_index == i) {
+                num++;
+            } else {
+                console.log(i, "不正确")
+            }
+
+        }
+        console.log(num)
+        if (num == 16) {
+            console.log("拼图成功")
+        }
+
+    }
+
+</script>
+
+</html>
