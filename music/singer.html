@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/iscroll.Veb.js"></script>
+
+    <style>
+        html {
+            /* font_size: 100*100vw/1349=7.4vw */
+            /* font-size:7.4vw ; */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #content {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .types button {
+            outline: 0;
+            border: none;
+            background-color: black;
+            color: white;
+            line-height: 30px;
+            border-radius: 15px;
+            padding: 0 20px;
+            font-size: 0.12rem;
+        }
+
+        .types {
+            padding: 30px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #list {
+            overflow: hidden;
+        }
+
+        #list li {
+            float: left;
+            width: 180px;
+            box-sizing: border-box;
+            padding: 5px;
+            margin: 10px;
+            box-shadow: 0 0 5px #999;
+            border-radius: 20px;
+        }
+
+        #list img {
+            width: 100%;
+            border-radius: 50%;
+            transition: all 0.5s;
+
+        }
+
+        #list li:hover img {
+            transform: rotate(360deg);
+        }
+
+        #list h4 {
+            text-align: center;
+            line-height: 30px;
+            
+        }
+
+        #list a {
+            display: block;
+            color: aqua;
+            text-align: center;
+        }
+
+        #loading {
+            background: url(http://vebcoder.cn/img/loading.4bbc20d4.jpg) center center no-repeat;
+            background-color: #eeeeee;
+            background-size: 200px auto;
+            opacity: 0.8;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <a href="songs.html?singer=336">周杰伦</a> -->
+
+    <div id="content">
+        <div class="types">
+            <button list-type="0">全部</button>
+            <button list-type="1">华语男</button>
+            <button list-type="2">华语女</button>
+            <button list-type="3">华语组合</button>
+            <button list-type="4">日韩男</button>
+            <button list-type="5">日韩女</button>
+            <button list-type="6">日韩组合</button>
+            <button list-type="7">欧美男</button>
+            <button list-type="8">欧美女</button>
+            <button list-type="9">欧美组合</button>
+            <button list-type="10">其他</button>
+        </div>
+        <ul id="list">
+
+        </ul>
+        <div id="loading">
+
+        </div>
+    </div>
+</body>
+<script src="js/zepto.js"></script>
+<script>
+    var nowpn = 0;
+    var type = 0;
+    $(".types button").live("click", function () {
+        //获取按钮对应的类型
+        type = $(this).attr("list-type");
+        // $.get("http://vebcoder.cn:9090//artist/artistInfo",{
+        //     category:type,
+        //     pn:1,
+        //     rn:100
+        // },function(res){
+        //     console.log(res);
+        // })
+
+        console.log("type的值" + type);
+        getData(nowpn);
+    })
+
+    //初始进入页面 请求默认分类
+    getData(nowpn);
+
+    //封装函数
+    function getData(nowpn) {
+        $("#loading").show();
+        // console.log(nowpn);
+        $.get("http://vebcoder.cn:9090/artist/artistInfo", {
+            category: type,
+            pn: nowpn,
+            rn: 100
+        }, function (res) {
+            console.log(res);
+
+            //获取歌手列表数据
+            var list = res.data.artistList;
+
+            var html = "";
+            for (var i = 0; i < list.length; i++) {
+                html += ' <li><img src="' + list[i].pic + '"><h4>' + list[i].name + '</h4><a href="songs.html?artistid=' + list[i].id + '">查看单曲</a></li>'
+            }
+            $("#list").append(html);
+            // $("#list").html(html);
+
+            $("#loading").hide();
+        })
+    }
+
+
+    window.onscroll = function () {
+        // console.log("滚动了");
+        var st = document.body.scrollTop || document.documentElement.scrollTop;//滚动高度
+        // console.log(st)
+        var sh = document.body.scrollHeight;//内容高度
+        // console.log(sh);
+        // console.log(window.innerHeight);
+        if (st + window.innerHeight >= sh - 3) {
+            console.log("到头");
+            nowpn++;
+            getData(nowpn);
+        }
+    }
+
+
+    // var isc_content = new iScroll("content", {
+    //     // momentum:false,//关闭惯性
+    //     topOffset: 40,
+    //     y: -40,
+    //     onScrollMove: function () {
+    //         if (this.y > 100) {
+                
+    //             // 设置回弹点  顶部回弹位置
+    //             this.minScrollY = 0;
+    //             console.log("ok");
+    //             $(".tip").html("松开立即刷新")
+    //         } else {
+    //             // 设置回弹点  顶部回弹位置
+    //             this.minScrollY = -40;
+    //             $(".tip").html("下拉刷新")
+    //         }
+
+    //     },
+
+    //     onScrollEnd: function () {
+    //         if (this.minScrollY == 0) {
+    //             console.log("haha");
+    //             //滚动结束时 发现minScrollY为0 符合刷新条件
+    //             $(".tip").html("正在刷新中...");
+    //             // 重新请求数据
+    //             setTimeout(function () {
+                    
+    //                 // // 重新计算尺寸
+    //                 isc_content.refresh();
+    //                 // // 恢复成初始状态
+    //                 $(".tip").html("下拉刷新");
+    //             }, 2000)
+    //         }
+    //         // isc_content.refresh();
+    //     }
+       
+    // })
+    // // isc_content.refresh();
+
+</script>
+
+</html>

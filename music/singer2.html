@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/iscroll.Veb.js"></script>
+    <script src="js/zepto.js"></script>
+    <link rel="stylesheet" href="font_size.css">
+
+    <style>
+        html {
+            /* font-size: 100*100vw/375=26.667vw */
+            font-size: 26.667vw;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #content {
+            position: absolute;
+            /* width: 1200px; */
+            width: 3.75rem;
+            /* margin-top: 0.4rem; */
+        }
+
+        .types button {
+            height: 0.15rem;
+            outline: 0;
+            border: none;
+            background-color: black;
+            color: white;
+            /* line-height: 30px; */
+            /* line-height: 0.2rem; */
+            /* border-radius: 15px; */
+            border-radius: 0.15rem;
+            padding: 0 0.05rem;
+            margin: 0.05rem;
+        }
+
+        .types {
+            font-size: 0;
+            /* padding: -0.5rem ; */
+            /* padding: 30px; */
+            padding: 0.05rem;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #list {
+            overflow: hidden;
+        }
+
+        #list li {
+            font-size: 0;
+            float: left;
+            /* width: 180px; */
+            width: 0.5rem;
+            box-sizing: border-box;
+            /* padding: 5px;
+            margin: 10px; */
+            padding: 0.05rem;
+            margin: 0.06rem;
+            box-shadow: 0 0 0.05rem #999;
+            /* border-radius: 20px; */
+            border-radius: 0.05rem;
+        }
+
+        #list img {
+            width: 100%;
+            border-radius: 50%;
+            transition: all 0.5s;
+        }
+
+        #list li:hover img {
+            transform: rotate(360deg);
+        }
+
+        #list h4 {
+            text-align: center;
+            /* line-height: 30px; */
+            /* line-height: 0.3rem; */
+            white-space: nowrap;
+            width: 0.4rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #list a {
+            display: block;
+            color: aqua;
+            text-align: center;
+        }
+
+        #loading {
+            background: url(http://vebcoder.cn/img/loading.4bbc20d4.jpg) center center no-repeat;
+            background-color: #eeeeee;
+            background-size: 2rem auto;
+            opacity: 0.8;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: none;
+
+        }
+
+        .tip {
+            line-height: 0.4rem;
+            font-size: 0.12rem;
+            text-align: center;
+            background-color: rgb(103, 104, 103);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <a href="songs.html?singer=336">周杰伦</a> -->
+<div id="content_view">
+    <div id="content">
+        <div class="tip">下拉刷新</div>
+        <div class="types">
+            <button list-type="0">全部</button><button list-type="1">华语男</button><button list-type="2">华语女</button><button
+                list-type="3">华语组合</button><button list-type="4">日韩男</button><button list-type="5">日韩女</button><button
+                list-type="6">日韩组合</button><button list-type="7">欧美男</button><button list-type="8">欧美女</button><button
+                list-type="9">欧美组合</button><button list-type="10">其他</button>
+        </div>
+        <ul id="list">
+
+        </ul>
+        <div id="loading">
+
+        </div>
+
+    </div>
+</div>
+</body>
+<script>
+    var nowpn = 1;
+    var type = 0;
+    $(".types button").live("click", function () {
+        //获取按钮对应的类型
+        type = $(this).attr("list-type");
+        // $.get("http://vebcoder.cn:9090//artist/artistInfo",{
+        //     category:type,
+        //     pn:1,
+        //     rn:100
+        // },function(res){
+        //     console.log(res);
+        // })
+
+        console.log("type的值" + type);
+        getData();
+    })
+
+    //初始进入页面 请求默认分类
+    getData();
+
+    //封装函数
+    function getData() {
+        $("#loading").show();
+        // console.log(nowpn);
+        $.get("http://vebcoder.cn:9090/artist/artistInfo", {
+            category: type,
+            pn: 1,
+            rn: 100
+        }, function (res) {
+            console.log(res);
+
+            //获取歌手列表数据
+            var list = res.data.artistList;
+            var html = "";
+            for (var i = 0; i < list.length; i++) {
+                html += ' <li><img src="' + list[i].pic + '"><h4>' + list[i].name + '</h4><a href="songs.html?artistid=' + list[i].id + '">单曲</a></li>'
+            }
+            // $("#list").append(html);
+            $("#list").html(html);
+
+            $("#loading").hide();
+            isc.refresh();
+
+        })
+    }
+
+    function nextpage(){
+        nowpn++;
+        $("#loading").show();
+        // console.log(nowpn);
+        $.get("http://vebcoder.cn:9090/artist/artistInfo", {
+            category: type,
+            pn: nowpn,
+            rn: 100
+        }, function (res) {
+            console.log(res);
+
+            //获取歌手列表数据
+            var list = res.data.artistList;
+            var html = "";
+            for (var i = 0; i < list.length; i++) {
+                html+='<li><img src="'+list[i].pic + '"><h4>' + list[i].name + '</h4><a href="songs.html?artistid=' + list[i].id +'">单曲</a></li>'
+            }
+            // $("#list").append(html);
+            list.innerHTML+=html;//叠加新内容
+            console.log(list)
+            $("#loading").hide();
+            isc.refresh();
+
+        })
+    }
+
+
+    // window.onscroll = function () {
+    //     // console.log("滚动了");
+    //     var st = document.body.scrollTop || document.documentElement.scrollTop;//滚动高度
+    //     // console.log(st)
+    //     var sh = document.body.scrollHeight;//内容高度
+    //     // console.log(sh);
+    //     // console.log(window.innerHeight);
+    //     if (st + window.innerHeight >= sh - 3) {
+    //         console.log("到头");
+    //         nowpn++;
+    //         getData(nowpn);
+    //     }
+    // }
+
+
+    var isc = new iScroll("content_view", {
+        momentum:false,//关闭惯性
+        topOffset: 40,
+        y: -40,
+        onScrollMove: function () {
+            if (this.y > 100) {
+
+                // 设置回弹点  顶部回弹位置
+                this.minScrollY = 0;
+                console.log("ok");
+                $(".tip").html("松开立即刷新")
+            } else {
+                // 设置回弹点  顶部回弹位置
+                this.minScrollY = -40;
+                $(".tip").html("下拉刷新")
+            }
+
+        },
+
+        onScrollEnd: function () {
+         
+            if (this.minScrollY == 0) {
+                console.log("haha");
+                //滚动结束时 发现minScrollY为0 符合刷新条件
+                $(".tip").html("正在刷新中...");
+                // 重新请求数据
+            
+                getData(nowpn) ;
+                console.log("aaaaaaa");
+            }
+           
+            if(this.y==this.maxScrollY){
+                // 触底
+                console.log("触底")
+                nextpage();
+            }
+            // isc.refresh();
+        }
+
+    })
+
+</script>
+
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/zepto.js"></script>
+    <style>
+    html{
+        font-size: 7.4vw;
+    }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+        #list {
+            /* width: 500px; */
+            width: 10rem;
+            margin: 0 auto;
+            /* padding-bottom: 100px; */
+            padding-bottom: 1rem;
+            font-size: 0.12rem;
+
+        }
+
+        #loading {
+            background: url(http://vebcoder.cn/img/loading.4bbc20d4.jpg) center center no-repeat;
+            background-color: #eeeeee;
+            background-size: 2rem auto;
+            opacity: 0.8;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: none;
+        }
+
+        li {
+            margin: 0.10rem 0px;
+            padding: 0.10rem;
+            box-shadow: 0 0 0.05rem #999;
+        }
+
+        #list li {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            /* border-radius: 10px; */
+            border-radius: 0.1rem;
+            font-size: 0.12rem;
+
+        }
+
+        #list img {
+            /* width: 100px; */
+            width: 1rem;
+            /* height: 100px; */
+            height: 1rem;
+            border-radius: 50%;
+        }
+
+        #list button {
+            outline: 0;
+            /* padding: 5px 20px; */
+            padding: 0.05rem 0.2rem;
+            border-radius: 20px;
+            background-color: #f44336;
+            color: white;
+            font-size: 0.14rem;
+        }
+
+        audio {
+            position: fixed;
+            left: 0;
+            /* bottom: -80px; */
+            bottom: -0.8rem;
+            /* height: 80px; */
+            height: 0.8rem;
+            width: 100%;
+            outline: 0;
+            transition: all 0.5s;
+        }
+        #intro{
+            /* padding-top: 10px;
+            width: 1000px;
+            height: 160px; */
+            padding-top: 0.1rem;
+            width: 10rem;
+            height: 1.6rem;
+            /* background-color: aqua; */
+            margin: 10px auto;
+            box-shadow: 0 0 0.05rem #999;
+            /* border-radius: 10px; */
+            border-radius: 0.1rem;
+            /* overflow: scroll; */
+            overflow: auto;
+            white-space: wrap;
+            
+            /* display: none; */
+        } 
+        #intro::-webkit-scrollbar{
+            display: none;
+        }
+        #intro p{
+            /* padding-left: 30px;
+            padding-right: 30px; */
+            padding-left: 0.3rem;
+            padding-right: 0.3rem;
+            font-size: 0.12rem;
+        }
+        #name{
+            display: block;
+            color: red;
+            font-size: larger;
+            font-weight: 600;
+            /* padding-left: 0; */
+            text-align: center;
+            font-size: 0.16rem;
+        }
+
+       
+    </style>
+</head>
+
+<body>
+    <div id="intro">
+        <!-- <span id="name">周杰伦：name</span>
+        <p>name,  性别gener，出生于birthday
+        出生地birthplace
+        祖籍country
+        星座是constellation
+        粉丝数：artistFans.data
+        发表专辑数：albumNum": 33,
+        歌手id:id: 336
+        音乐数：musicNum: 1092
+        mv数量：mvNum: 480
+        详细信息：info</p> -->
+    </div>
+    <ul id="list">
+        <!-- <li><img src="'+list[i].pic+'" alt="">
+            <div class="info">
+                <h4>'+list[i].name+'</h4>
+                <p>'+list[i].artist+'</p>
+            </div>
+            <div class="btns"><button class="song" song-id="'+list[i].rid+'">播放单曲</button>
+                <button class="mv" song-id="'+list[i].rid+'">播放mv</button>
+            </div>
+        </li> -->
+    </ul>
+    <div id=" loading">
+    </div>
+    <audio src="" controls>
+    </audio>
+</body>
+<script>
+    var query = getQuery();
+    $("#loading").show();
+
+    $.get("http://vebcoder.cn:9090/artist/artist",{
+        artistid: query.artistid
+    },function(res){
+        console.log(res);
+        var info="";
+        info='<span id="name">'+res.data.name+'</span><p>详细信息：'+res.data.info+'</p> '
+ $("#intro").html(info);
+    })
+
+    $.get("http://vebcoder.cn:9090//artist/artistMusic", {
+        artistid: query.artistid,
+        pn: 1,
+        rn: 100
+    }, function (res) {
+        console.log(res);
+        $("#loading").hide();
+        var html = "";
+        var list = res.data.list;
+        
+        console.log(list)
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].hasmv == 1) {
+                html += ' <li><img src="' + list[i].pic + '" alt=""><div class="info"><h4>' + list[i].name + '</h4><p>' + list[i].artist + '</p></div><div class="btns"><button class="song" song-id="' + list[i].rid + '">播放单曲</button><button class="mv" song-id="' + list[i].rid + '">播放mv</button></div></li>'
+               
+                
+            } else {
+                html += ' <li><img src="' + list[i].pic + '" alt=""><div class="info"><h4>' + list[i].name + '</h4><p>' + list[i].artist + '</p></div><div class="btns"><button class="song" song-id="' + list[i].rid + '">播放单曲</button></div></li>'
+               
+            }
+
+        }
+        $("#list").html(html);
+       
+
+
+    })
+
+
+
+    //点击播放 获取按钮所携带的歌曲rid
+    $(".song").live("click", function () {
+        var rid = $(this).attr("song-id");
+
+        $.get("http://vebcoder.cn:9090/url?format=mp3&rid=" + rid + "&response=url&type=convert_url3&br=128kmp3&from=web", function (res) {
+            // console.log(res.url);
+            var url = JSON.parse(res).url;
+
+            //设置播放路径
+            $("audio").attr("src", url).css("bottom",0);
+
+            //调用DOM对象下play方法播放音频  $("audio")是一个集合  get(index)获取集合中对应DOM对象
+            // $("audio").get(0).play();
+
+            var audio=document.getElementsByTagName("audio")[0];
+            audio.play();
+        })
+
+    })
+
+    $(".mv").live("click", function () {
+        var rid = $(this).attr("song-id");
+
+        $.get("http://vebcoder.cn:9090/url?rid=" + rid + "&response=url&format=mp4%7Cmkv&type=convert_url", function (res) {
+            console.log(res);
+            window.open(res);
+        })
+
+
+    })
+</script>
+
+</html>
