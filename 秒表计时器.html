@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #out {
+            margin: 0 auto;
+            width: 500px;
+            border: 1px solid blueviolet;
+            text-align: center;
+            padding-bottom: 20px
+        }
+    </style>
+</head>
+<body>
+    <div id="out">
+        <h1 id="content">00:00:000</h1>
+        <button id="start">开始</button>
+        <button id="division">分割</button>
+        <button id="reset">重置</button>
+    </div>
+</body>
+<script>
+    var content = document.getElementById("content");
+    var totalTime = 0;
+    var timer;
+    function showTime() {
+        var min;
+        var second;
+        var msecond;
+        second = Math.floor((totalTime / 1000) % 60);
+        min = Math.floor(totalTime / 1000 / 60 % 60);
+        msecond = totalTime % 1000;
+
+        second = second % 60 < 10 ? "0" + second : second;
+        min = min % 60 < 10 ? +"0" + min : min;
+        msecond = msecond < 100 ? "0" + msecond : msecond;
+        return min + ":" + second + ":" + msecond;
+    }
+    var start = document.getElementById("start");
+    start.onclick = function (e) {
+
+        if (e.target.innerHTML == "开始") {
+            e.target.innerHTML = "暂停";
+            timer = setInterval(function () {
+                totalTime += 41;
+                content.innerHTML = showTime();
+            }, 41)
+        } else if (e.target.innerHTML == "暂停") {
+            e.target.innerHTML = "开始";
+            console.log("输出打印" + timer);
+            clearInterval(timer);
+            timer = null;
+            return
+        }
+    }
+    var division = document.getElementById("division");
+    division.onclick = function (e) {
+        var h2 = document.createElement("h2");
+        h2.innerHTML = showTime();
+        out.appendChild(h2);
+    }
+    var reset = document.getElementById("reset");
+    reset.onclick = function (e) {
+        //将分割的时间都清除
+        //返回值是一个类数组
+        var divTime = document.getElementsByTagName("h2");
+        for (var i = 0; i < divTime.length; i++) {
+            out.removeChild(divTime[0]);
+            i--;
+        }
+        clearInterval(timer);
+        timer = null;
+        //总时间变成零
+        totalTime = 0;
+        content.innerHTML = showTime();
+        //暂停按钮  都变成开始按钮
+        start.innerHTML = "开始";
+    }
+</script>
+</html>
+
