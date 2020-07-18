@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        color: blue;
+      }
+      main {
+        margin: 0 auto;
+        width: 1000px;
+      }
+      header {
+        background-color: aqua;
+      }
+      #nav-bar {
+        width: 1000px;
+        margin: 0 auto;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      #nav-list {
+        display: flex;
+      }
+
+      .nav-item {
+        margin: 0 10px;
+      }
+
+      .nav-item a {
+        display: inline-block;
+        /* background-color: red; */
+        padding: 10px 20px;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: "宋体";
+      }
+
+      .nav-item a:hover {
+        background-color: red;
+      }
+
+      .active {
+        background-color: red;
+      }
+      .content {
+        font-family: "仿宋";
+        color: #333333;
+        font-size: 16px;
+      }
+
+      .info {
+        font-size: 12px;
+      }
+
+      .reply-box {
+        border: solid 1px black;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav id="nav-bar">
+        <ul id="nav-list">
+          <li class="nav-item">
+            <a href="/" class="active">首页</a>
+          </li>
+          <li class="nav-item">
+            <a href="/tag">标签</a>
+          </li>
+          <% if (user) { %>
+          <li class="nav-item">
+            <a href="/commit">发帖</a>
+          </li>
+          <li class="nav-item">
+            <a href="/logout">退出登录</a>
+          </li>
+          <li class="nav-item">
+            <a href="#"><%= user.username %> </a>
+          </li>
+          <% } else{%>
+          <li class="nav-item">
+            <a href="/login.html">登录</a>
+          </li>
+          <li class="nav-item">
+            <a href="/registe.html">注册</a>
+          </li>
+          <%}%>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1><%= data.title %></h1>
+      <p class="info"><%= data.time %></p>
+      <p class="info">作者:<a href="#"><%= data.username %> </a></p>
+
+      <p class="content">
+        <%= data.content %>
+      </p>
+      <% if (user&&data.username==user.username ) { %>
+      <a href="/del?_id=<%= data._id %> ">删除帖子</a>
+      <% } %>
+      <!-- <a href="#">删除帖子</a> -->
+
+      <hr />
+
+      <!-- 回复列表 -->
+      <% for( let i = 0; i < data.reply.length; i++ ) { %>
+      <div class="reply-box">
+        <h6>回复者： <%=data.reply[i].replyname %> </h6>
+        <p><%= data.reply[i].replycontent %> </p>
+      </div>
+      <% } %>
+      
+
+      <hr />
+      <% if (user) { %>
+       <form action="/reply" method="POST">
+        <input name="blogid" value="<%= data._id %>" style="display: none;" />
+
+        <!-- <label for="">昵称</label>
+        <input type="text" name="nickname" required /> -->
+        <br />
+        <textarea name="reply" required></textarea>
+        <br />
+        <button>回帖</button>
+      </form>
+      <% } %>
+      
+    </main>
+  </body>
+</html>

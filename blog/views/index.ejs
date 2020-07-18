@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <style>
+      body {
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        color: blue;
+      }
+      main {
+        margin: 0 auto;
+        width: 1000px;
+      }
+      header {
+        background-color: aqua;
+      }
+      #nav-bar {
+        width: 1000px;
+        margin: 0 auto;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      #nav-list {
+        display: flex;
+      }
+
+      .nav-item {
+        margin: 0 10px;
+      }
+
+      .nav-item a {
+        display: inline-block;
+        /* background-color: red; */
+        padding: 10px 20px;
+        color: blue;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: "宋体";
+      }
+
+      .nav-item a:hover {
+        background-color: red;
+      }
+
+      .active {
+        background-color: red;
+      }
+      .blog-title {
+        color: red;
+      }
+
+      .blog-title a {
+        color: red;
+      }
+
+      .link:hover {
+        color: red;
+      }
+
+      .tag-item {
+        background-color: red;
+        color: gray;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      div>p>a{
+        margin:5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav id="nav-bar">
+        <ul id="nav-list">
+          <li class="nav-item">
+            <a href="/" class="active">首页</a>
+          </li>
+          <li class="nav-item">
+            <a href="/tag">标签</a>
+          </li>
+          <% if (user) { %>
+            <li class="nav-item">
+              <a href="/commit">发帖</a>
+            </li>
+            <li class="nav-item">
+              <a href="/logout">退出登录</a>
+            </li>
+  
+            <li class="nav-item">
+              <a href="#"><%= user.username %> </a>
+            </li>
+          <% } else{%>
+
+            <li class="nav-item">
+              <a href="/login.html">登录</a>
+            </li>
+            <li class="nav-item">
+              <a href="/registe.html">注册</a>
+            </li>
+            <%}%>
+         
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <% for( let i = 0; i < blogs.length; i++ ) { %>
+        <div>
+          <h2 class="blog-title">
+            <a href="/blog_detail?_id=<%= blogs[i]._id %>"><%= blogs[i].title %> </a>
+          </h2>
+          <p>
+            <span> 作者:<a class="link" href="#"><%= blogs[i].username %> </a> </span>|
+            <span><%= blogs[i].time %> </span>|
+            <% for( let j = 0; j < blogs[i].tag.length; j++ ) { %>
+              <a href="#" class="tag-item"><%= blogs[i].tag[j] %> </a> 
+            <% } %>
+          </p>
+          <p>
+            <span>阅读:<%= blogs[i].num %> </span>|
+            <span>回复:<%= blogs[i].reply.length %> </span>
+          </p>
+          <hr />
+        </div>
+      <% } %>
+     
+    </main>
+  </body>
+</html>
