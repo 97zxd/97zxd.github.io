@@ -15,9 +15,9 @@
       content="百合情感是最权威的专业情感挽回机构，提供情感挽回解决方案和情感挽回秘籍。专注挽回关系，感情挽回、挽回婚姻的服务和在线课程"
     />
     <title>查看更多 - 百合情感</title>
-    <link rel="stylesheet" href="/css/media.css-750.css" />
+    <link rel="stylesheet" href="./css/media.css-750.css" />
     <!-- <link rel="stylesheet" href="/static/swiper/swiper.min.css" /> -->
-    <link rel="stylesheet" href="/css/qingganyy.css" />
+    <link rel="stylesheet" href="./css/qingganyy.css" />
     <link
       rel="icon"
       href="//static5.baihe.com/images/newH5/logo2.png"
@@ -27,7 +27,7 @@
       type="text/javascript"
       src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"
     ></script>
-    <script src="/js/weixin.js"></script>
+    <script src="./js/weixin.js"></script>
     <!-- <script src="/static/js/baiduTJ.js"></script> -->
     <style>
       .list6 li {
@@ -43,14 +43,16 @@
     </style>
   </head>
   <body>
-    <div class="page bgfffbf4 pb140" id="page" @click="hl=false" v-cloak>
+    <div class="page bgfffbf4 pb140" id="page">
       <div class="head-1">
-        <a href="/index/mi2"
-          ><img
+        <a href="/index/mi2">
+          <!-- <img
             src="/static/images/icon/logo.png"
             class="vm"
             style="width: 1.81rem"
-        /></a>
+        /> -->
+          <img src="" class="vm" style="width: 1.81rem" />
+        </a>
         <span class="hf-1 vm ml33"> 百合网 十三年品牌 </span>
         <div class="xla" @click.stop="hl=!hl"></div>
         <div class="list1" v-if="hl" @click.stop>
@@ -65,11 +67,12 @@
         <ul>
           <li v-for="(v,i) of list7">
             <a :href="v.href">
-              <img
+              <!-- <img
                 :src="'/static/images/op'+i+'.jpg'"
                 class="vm mt18"
                 style="width: 0.81rem"
-              />
+              /> -->
+              <img src="" class="vm mt18" style="width: 0.81rem" />
               <div class="ocl1 mt18">
                 <div class="fontSize28">{{v.t}}</div>
                 <div class="mt15">
@@ -106,10 +109,11 @@
               class="tc dl"
               style="width: 100%; padding-top: 0.25rem"
             >
-              <img
+              <!-- <img
                 src="/static/images/icon/msg1.png"
                 style="width: 0.4rem; margin-bottom: 0.02rem"
-              />
+              /> -->
+              <img src="" style="width: 0.4rem; margin-bottom: 0.02rem" />
               <div class="fontSize24 colorfff mt15">在线咨询</div>
             </a>
           </li>
@@ -144,7 +148,7 @@
       //     }
       //   );
     </script>
-    <script src="/js/vue.min.js"></script>
+    <script src="./js/vue.min.js"></script>
     <!-- <script src="/static/swiper/swiper.min.js"></script> -->
     <script>
       /*文章json数组列表
@@ -154,7 +158,7 @@
        * r:阅读数量；
        * id:文章ID
        * */
-      var arrList = [
+      var list7 = [
         {
           t: "办公室恋情: 疑心病差点让我错失真爱",
           u: "苏瑞解答",
