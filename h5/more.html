@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" class="bgfffbf4">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui"
+    />
+    <meta
+      name="keywords"
+      content="情感挽回,感情挽回,挽回爱情,挽救婚姻,小三分离"
+    />
+    <meta
+      name="description"
+      content="百合情感是最权威的专业情感挽回机构，提供情感挽回解决方案和情感挽回秘籍。专注挽回关系，感情挽回、挽回婚姻的服务和在线课程"
+    />
+    <title>查看更多 - 百合情感</title>
+    <link rel="stylesheet" href="/css/media.css-750.css" />
+    <!-- <link rel="stylesheet" href="/static/swiper/swiper.min.css" /> -->
+    <link rel="stylesheet" href="/css/qingganyy.css" />
+    <link
+      rel="icon"
+      href="//static5.baihe.com/images/newH5/logo2.png"
+      type="image/x-icon"
+    />
+    <script
+      type="text/javascript"
+      src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"
+    ></script>
+    <script src="/js/weixin.js"></script>
+    <!-- <script src="/static/js/baiduTJ.js"></script> -->
+    <style>
+      .list6 li {
+        border-bottom: 1px solid #ddd;
+        height: 1.2rem;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0 0.3rem;
+        width: 6.9rem;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page bgfffbf4 pb140" id="page" @click="hl=false" v-cloak>
+      <div class="head-1">
+        <a href="/index/mi2"
+          ><img
+            src="/static/images/icon/logo.png"
+            class="vm"
+            style="width: 1.81rem"
+        /></a>
+        <span class="hf-1 vm ml33"> 百合网 十三年品牌 </span>
+        <div class="xla" @click.stop="hl=!hl"></div>
+        <div class="list1" v-if="hl" @click.stop>
+          <ul>
+            <li v-for="(v,i) of list">
+              <a :href="v.href">{{v.title}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="list6 mt70">
+        <ul>
+          <li v-for="(v,i) of list7">
+            <a :href="v.href">
+              <img
+                :src="'/static/images/op'+i+'.jpg'"
+                class="vm mt18"
+                style="width: 0.81rem"
+              />
+              <div class="ocl1 mt18">
+                <div class="fontSize28">{{v.t}}</div>
+                <div class="mt15">
+                  <span class="fontSize24 color9a9a9a">{{v.u}}</span>
+                  <div class="fr">
+                    <span class="fontSize24 color9a9a9a"
+                      >喜欢<span class="ml13">{{v.l}}</span
+                      ><span class="ml26">阅读</span
+                      ><span class="ml13">{{v.r}}</span></span
+                    >
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="foot1">
+        <ul class="ftlist">
+          <li>
+            <a
+              href="tel:4001520556"
+              class="tc dl"
+              style="width: 100%; padding-top: 0.25rem"
+            >
+              <!-- <img src="/static/images/icon/ph.png" style="width: 0.4rem" /> -->
+              <img src="" alt="" style="width: 0.4rem" />
+              <div class="fontSize24 colorfff mt15">挽爱热线</div>
+            </a>
+          </li>
+          <li>
+            <a
+              href="//p.qiao.baidu.com/cps/chat?siteId=11726518&userId=19152503"
+              class="tc dl"
+              style="width: 100%; padding-top: 0.25rem"
+            >
+              <img
+                src="/static/images/icon/msg1.png"
+                style="width: 0.4rem; margin-bottom: 0.02rem"
+              />
+              <div class="fontSize24 colorfff mt15">在线咨询</div>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/index/mi2"
+              class="tc dl"
+              style="width: 100%; padding-top: 0.25rem"
+            >
+              <!-- <img
+                src="/static/images/icon/hp.png"
+                style="width: 0.4rem; margin-top: -0.03rem"
+              /> -->
+              <img src="" alt="" />
+              <div class="fontSize24 colorfff mt15">预约求助</div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      var link = encodeURIComponent(window.location.href);
+      //   $.get(
+      //     "/index/wechatshareinfo/?url=" + link + "&r=" + Math.random(),
+      //     function (data) {
+      //       var appid = data.appid;
+      //       var signature = data.signature;
+      //       var span = data.timestamp;
+      //       var img = "//static5.baihe.com/images/logo300.png";
+      //       var link = window.location.href;
+      //       weixinFX(appid, signature, span, link, undefined, undefined, img);
+      //     }
+      //   );
+    </script>
+    <script src="/js/vue.min.js"></script>
+    <!-- <script src="/static/swiper/swiper.min.js"></script> -->
+    <script>
+      /*文章json数组列表
+       * t:标题名字;
+       * u:作者名字
+       * l:喜欢数量；
+       * r:阅读数量；
+       * id:文章ID
+       * */
+      var arrList = [
+        {
+          t: "办公室恋情: 疑心病差点让我错失真爱",
+          u: "苏瑞解答",
+          l: "1296",
+          r: "2252",
+          id: 1,
+          href: "/static/html/qa_2.html",
+        },
+        {
+          t: "老师您好，我女朋友跟我提出分手......",
+          u: "晓慧解答",
+          l: "3892",
+          r: "8889",
+          id: 2,
+          href: "/static/html/qa_3.html",
+        },
+        {
+          t: '因为太"作"，男友要和我分手!',
+          u: "谈檀解答",
+          l: "2529",
+          r: "6849",
+          id: 3,
+          href: "/static/html/qa_4.html",
+        },
+        {
+          t: "愚人节的表白",
+          u: "李晴雨解答",
+          l: "3249",
+          r: "6869",
+          id: 4,
+          href: "/static/html/qa_5.html",
+        },
+        {
+          t: "想和分手2年的前男友复合怎么办？",
+          u: "夏莉解答",
+          l: "3829",
+          r: "6839",
+          id: 5,
+          href: "/static/html/qa_1.html",
+        },
+        {
+          t: '正宫捍卫婚姻的六步"狠"招',
+          u: "张鸿解答",
+          l: "5263",
+          r: "7015",
+          id: 6,
+          href: "/static/html/qa_6.html",
+        },
+      ];
+    </script>
+    <script src="/static/js/index.js"></script>
+  </body>
+</html>

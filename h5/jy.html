@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui"
+    />
+    <meta
+      name="keywords"
+      content="情感挽回,感情挽回,挽回爱情,挽救婚姻,小三分离"
+    />
+    <meta
+      name="description"
+      content="百合情感是最权威的专业情感挽回机构，提供情感挽回解决方案和情感挽回秘籍。专注挽回关系，感情挽回、挽回婚姻的服务和在线课程"
+    />
+    <title>百合情感 - 专业情感服务机构</title>
+    <link rel="stylesheet" href="/css/media.css-750.css" />
+    <!-- <link rel="stylesheet" href="/css/qingganyy.css" /> -->
+    <!-- <link rel="stylesheet" href="/css/ceshi.css" /> -->
+    <!-- <script src="/js/vue.min.js"></script> -->
+    <!-- <script src="/js/jquery-1.12.0.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+    <!-- <script
+      type="text/javascript"
+      src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"
+    ></script> -->
+    <!-- <script src="/js/weixin.js"></script> -->
+    <style></style>
+  </head>
+  <body>
+    <div class="page pb140" id="page" @click="hl=false" v-cloak>
+      <div class="head-1">
+        <a href="//qg.baihe.com/index/mi7">
+          <!-- <img
+            src="/static/newindex/test/images/icon/logo.png"
+            class="vm"
+            style="width: 1.81rem"
+        /> -->
+          <img src="" alt="" />
+        </a>
+        <span class="hf-1 vm ml29" style="margin-left: 0.29rem">
+          <!-- <img
+            src="/static/newindex/test/images/icon/logo2.png"
+            class="vm"
+            style="width: 2.16rem"
+          /> -->
+          <img src="" alt="" />
+        </span>
+      </div>
+      <div class="contr1 mt70">
+        <div class="fontSize36" style="padding-top: 0.1rem">
+          为情感婚姻来一次"健康体检"
+        </div>
+        <div class="fontSize24 mt20">
+          <span id="ffx">{{num2}}</span>人完成测试，获得免费咨询
+        </div>
+      </div>
+      <div class="cnt_test cnt_test2">
+        <div class="tit">测试结果</div>
+        <p id="rs3" style="display: none">
+          夫妻关系不理想:
+          你们的婚姻缺乏爱情基础，即使相安无事，也只不过在委屈求全。对此夫妻双方宜做出努力予以改变。长期夫妻关系失调、感情难于沟通、即使终日相处也感不到欢乐和幸福，还易导致"婚外恋"。记住一句名言："选择你所爱的，爱你所选的。"
+          只要你们夫妻互相反省，在感情上多投资，一切或许会好起来。
+        </p>
+        <p id="rs2" style="display: none">
+          夫妻关系较理想，尚可努力:一般而言，夫妻关系还算理想，但存有若干不理想因素，你们对此不要忽略。要看到，即使当初双方起点相同也不等于有相同的终点，更不等于在生活旅途中永远美满和谐，因而有不理想的成分不应苦恼，应视为正常现象。关键是要培养共同的价值取向。价值观念一旦变化就会给夫妻关系蒙上阴影，你们对此应时刻留意。
+        </p>
+        <p id="rs1" style="display: none">
+          夫妻关系很理想:
+          对你们来说，婚姻不是爱情的终结，而是更深的依恋。当然，有些时候，你们也可能闹点小别扭，但这不过是平静生活
+          的小插曲，不仅无碍，还会在绚丽的生活上增加色彩。乌云过后，爱的天空更蔚蓝。
+        </p>
+        <div class="bottomT">百合情感承诺严格保密您的信息</div>
+        <a
+          href="//p.qiao.baidu.com/cps/chat?siteId=11726518&userId=19152503"
+          class="redBtn"
+          >咨询专家建议</a
+        >
+      </div>
+    </div>
+    <script>
+      var link = encodeURIComponent(window.location.href);
+      // $.get("/index/wechatshareinfo/?url="+link+"&r="+Math.random(),function(data) {
+      //     var appid = data.appid;
+      //     var signature = data.signature;
+      //     var span = data.timestamp;
+      //     var img='//static5.baihe.com/images/logo300.png';
+      //     var link = window.location.href;
+      //     weixinFX(appid, signature, span, link,undefined, undefined, img);
+      // });
+    </script>
+    <script>
+      //   var score = location.hash.substr(1);
+      //   if (score >= 47 && score <= 60) {
+      //     $("#rs1").show();
+      //   } else if (score >= 23 && score <= 46) {
+      //     $("#rs2").show();
+      //   } else if (score >= 12 && score <= 22) {
+      //     $("#rs3").show();
+      //   } else {
+      //     $("#rs3").show();
+      //   }
+    </script>
+    <script>
+      var page = new Vue({
+        el: "#page",
+        created: function () {},
+        data: {
+          hl: false,
+          cur: 0,
+          num1: 0,
+          num2: 0,
+          zxtype: 0,
+          name: "",
+          tel: "",
+          list: [
+            { title: "首页", href: "index.html?pos=0" },
+            { title: "关于我们", href: "index.html?pos=14" },
+            { title: "挽爱服务", href: "index.html?pos=31" },
+            { title: "顶级专家", href: "index.html?pos=40" },
+            { title: "百合情感问答", href: "index.html?pos=55" },
+            { title: "定制挽爱方案", href: "index.html" },
+          ],
+        },
+        methods: {},
+      });
+      window.onscroll = function (ev) {
+        page.hl = false;
+      };
+      function init() {
+        var d1 = new Date();
+        var d2 = new Date(2016, 1, 19);
+        var day = parseInt((d1 - d2) / (1000 * 60 * 60 * 24));
+        var st2 = 52013 + (day - 4) * 24;
+
+        var num2 = new Number(52013 + day * 24 + parseInt(1 * d1.getHours()));
+        var ix2 = window.setInterval(function () {
+          if (st2 > num2) {
+            window.clearInterval(ix2);
+          }
+          page.$data.num2 = st2;
+          st2 = st2 + 1;
+        }, 100);
+      }
+      init();
+    </script>
+  </body>
+</html>
