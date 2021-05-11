@@ -1,3 +1,73 @@
+@media (min-width: 270px) {
+  html {
+    font-size: 225%;
+  }
+}
+@media (min-width: 275px) {
+  html {
+    font-size: 229.1666666666667%;
+  }
+}
+@media (min-width: 280px) {
+  html {
+    font-size: 233.3333333333333%;
+  }
+}
+@media (min-width: 285px) {
+  html {
+    font-size: 237.5%;
+  }
+}
+@media (min-width: 290px) {
+  html {
+    font-size: 241.6666666666667%;
+  }
+}
+@media (min-width: 295px) {
+  html {
+    font-size: 245.8333333333333%;
+  }
+}
+@media (min-width: 300px) {
+  html {
+    font-size: 250%;
+  }
+}
+@media (min-width: 305px) {
+  html {
+    font-size: 254.1666666666667%;
+  }
+}
+@media (min-width: 310px) {
+  html {
+    font-size: 258.3333333333333%;
+  }
+}
+@media (min-width: 315px) {
+  html {
+    font-size: 262.5%;
+  }
+}
+@media (min-width: 316px) {
+  html {
+    font-size: 263.3333333333333%;
+  }
+}
+@media (min-width: 317px) {
+  html {
+    font-size: 264.1666666666667%;
+  }
+}
+@media (min-width: 318px) {
+  html {
+    font-size: 265%;
+  }
+}
+@media (min-width: 319px) {
+  html {
+    font-size: 265.8333333333333%;
+  }
+}
 @media (min-width: 320px) {
   html {
     font-size: 266.6666666666667%;
