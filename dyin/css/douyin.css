@@ -1,0 +1,124 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+.douyin {
+  border: 1px solid transparent;
+  padding: 0;
+  margin: 0 auto;
+  width: 7.5rem;
+  /* height: 1rem; */
+  font-size: 0;
+  background: linear-gradient(
+    180deg,
+    #fe7537 0%,
+    #fe8737 4%,
+    #fe8737 44%,
+    #fe6837 100%
+  );
+}
+.douyin > img {
+  width: 7.5rem;
+}
+
+.form {
+  padding-bottom: 0.43rem;
+  margin: 0.5rem auto 1.43rem;
+  width: 6.9rem;
+  height: 7.8rem;
+  background: #ffffff;
+  border-radius: 0.2rem;
+  /* filter: blur(0.43rem); */
+}
+.form > h1 {
+  padding-bottom: 0.4rem;
+  padding-top: 0.6rem;
+  text-align: center;
+  height: 0.58rem;
+  font-size: 0.42rem;
+  font-family: AlibabaPuHuiTi-Bold, AlibabaPuHuiTi;
+  font-weight: bold;
+  color: #ff8a0f;
+  line-height: 0.58rem;
+  letter-spacing: 0.1rem;
+}
+.form > .line {
+  margin: 0.3rem auto 0.5rem;
+  width: 5.9rem;
+  height: 0.02rem;
+  background: #000000;
+  opacity: 0.3;
+}
+.form > img,
+.form > .tel > img {
+  width: 0.29rem;
+  height: 0.32rem;
+  margin-left: 0.5rem;
+}
+.form > input,
+.form > .tel > input {
+  margin-left: 0.53rem;
+  height: 0.76rem;
+
+  font-size: 0.28rem;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #000000;
+  line-height: 0.76rem;
+  border: none;
+}
+.form > .tel {
+  display: flex;
+  align-items: center;
+}
+.form > .tel > .getcode {
+  width: 1.96rem;
+  height: 0.76rem;
+  background: #ff8a0f;
+  border-radius: 0.08rem;
+  opacity: 0.6;
+
+  text-align: center;
+  font-size: 0.28rem;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 0.76rem;
+}
+.form > .dogin {
+  margin: 0.8rem auto 0.5rem;
+  text-align: center;
+  width: 5.9rem;
+  height: 0.8rem;
+  background: #ff8a0f;
+  border-radius: 2rem;
+  font-size: 0.36rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 0.8rem;
+  letter-spacing: 0.04rem;
+}
+.foot {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 7.5rem;
+  height: 1rem;
+  background: #ff4949;
+  box-shadow: 0rem -0.2rem 0.35rem 0rem rgba(255, 73, 73, 0.3);
+
+  font-size: 0.4rem;
+  font-family: PingFang SC;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1rem;
+}
+.foot > a {
+  text-decoration: none;
+  font-size: 0.4rem;
+  font-family: PingFang SC;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1rem;
+}
