@@ -119,6 +119,7 @@
     background-color: transparent;
     border-bottom: 1px solid #999999;
     outline: none;
+    -webkit-appearance: none;
   }
   .main .search_phone input::-webkit-search-cancel-button {
     display: none;
