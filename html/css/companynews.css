@@ -116,8 +116,8 @@
     height: 50%;
     border: none;
     vertical-align: middle;
-    /* background-color: transparent; */
-    background-color: #ec6c1f;
+    background-color: transparent;
+    /* background-color: #ec6c1f; */
     border-bottom: 1px solid #999999;
     outline: none;
     -webkit-appearance: none;
@@ -125,7 +125,7 @@
   .main .search_phone input::-webkit-search-cancel-button {
     display: none;
   }
-  ； .main .search_phone .search_time input {
+  .main .search_phone .search_time input {
     width: 90%;
   }
   .main .search_phone .search_keyword {
