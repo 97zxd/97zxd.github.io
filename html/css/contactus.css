@@ -1,0 +1,79 @@
+.main {
+  /* border: 1px solid transparent; */
+}
+.main .bg {
+  width: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background-color: #eb6c1f;
+  height: 50px;
+}
+.main .img {
+  display: none;
+}
+.main .contactway {
+  margin: 0 10%;
+  width: 80%;
+}
+.main .contactway p {
+  margin-top: 50px;
+  margin-bottom: 12px;
+  color: #eb6c1f;
+  font-size: 18px;
+}
+.main .contactway .contactway-list .contactway-item {
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+.main .contactway .contactway-list .contactway-item:nth-child(1) {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  width: 100%;
+}
+.main .contactway .contactway-list .contactway-item .title {
+  color: #333333;
+  font-size: 15px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.main .contactway .contactway-list .contactway-item p {
+  color: #666666;
+  font-size: 13px;
+  margin: 0;
+}
+@media only screen and (max-width: 1024px) {
+  .main .bg {
+    display: none;
+  }
+  .main .img {
+    display: block;
+    height: 180px;
+    width: 100%;
+    /* border: 1px solid #eb6c1f; */
+  }
+  .main .img img {
+    width: 100%;
+    height: 100%;
+  }
+  .main .contactway p {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    color: #333333;
+    font-size: 18px;
+  }
+
+  .main .contactway .contactway-list .contactway-item {
+    float: none;
+    text-align: left;
+    margin-left: 0;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .main .contactway .contactway-list .contactway-item {
+    width: 31%;
+  }
+}

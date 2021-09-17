@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="css/base.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navbox">
+        <div class="title">
+          <span>百合佳缘网络集团股份有限公司</span>
+        </div>
+        <ul class="navlist">
+          <li class="on"><a href="companyinfo.html">集团介绍</a></li>
+          <li><a href="managementteam.html">管理团队</a></li>
+          <li><a href="depexperience.html">发展经历</a></li>
+          <li><a href="investorrelation.html">投资者关系</a></li>
+          <li><a href="companynews.html">企业新闻</a></li>
+          <li><a href="contactus.html">联系我们</a></li>
+        </ul>
+      </div>
+    </header>
+    <script src="js/jquery.js"></script>
+    <script>
+      $(".navbox>.navlist>li").click(function () {
+        //点击导航栏
+        var index = $(this).index(); //获取导航栏的下标
+        // console.log(index);
+        $(".navlist").each(function (e) {
+          $(this)
+            .find("li")
+            .eq(index)
+            .addClass("on")
+            .siblings("li")
+            .removeClass("on");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navbox">
+        <div class="title">
+          <span>百合佳缘网络集团股份有限公司</span>
+        </div>
+        <ul class="navlist">
+          <li class="on"><a href="javascript:;">集团介绍</a></li>
+          <li><a href="javascript:;">管理团队</a></li>
+          <li><a href="javascript:;">发展经历</a></li>
+          <li><a href="javascript:;">投资者关系</a></li>
+          <li><a href="javascript:;">企业新闻</a></li>
+          <li><a href="javascript:;">联系我们</a></li>
+        </ul>
+      </div>
+    </header>
+    <div class="main"></div>
+    <footer>
+      <div class="foot_left">
+        <ul class="foot-list">
+          <li class="foot-list-nav">
+            集团介绍
+            <div class="foot-list-nav-list">
+              <ul class="foot-list-nav-list-ul">
+                <li class="foot-list-nav-item">企业简介</li>
+                <li class="foot-list-nav-item">公司业务</li>
+              </ul>
+            </div>
+          </li>
+          <li class="foot-list-nav">
+            团队管理
+            <div class="foot-list-nav-list">
+              <ul class="foot-list-nav-list-ul"></ul>
+            </div>
+          </li>
+          <li class="foot-list-nav">
+            发展经历
+            <div class="foot-list-nav-list">
+              <ul class="foot-list-nav-list-ul"></ul>
+            </div>
+          </li>
+          <li class="foot-list-nav">
+            投资者关系
+            <div class="foot-list-nav-list">
+              <ul class="foot-list-nav-list-ul">
+                <li class="foot-list-nav-item">公告及通函</li>
+                <li class="foot-list-nav-item">财务报告</li>
+                <li class="foot-list-nav-item">分析师覆盖</li>
+                <li class="foot-list-nav-item">FAQ</li>
+              </ul>
+            </div>
+          </li>
+          <li class="foot-list-nav">
+            企业新闻
+            <div class="foot-list-nav-list">
+              <ul class="foot-list-nav-list-ul"></ul>
+            </div>
+          </li>
+          <li class="foot-list-nav">
+            联系我们
+            <div class="foot-list-nav-list">
+              <ul class="foot-list-nav-list-ul"></ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="foot-right">
+        <ul class="right-list">
+          <li class="right-item">
+            <img src="./images/d-1.jpg" alt="" />
+          </li>
+          <li class="right-item">
+            <img src="./images/d-2.jpg" alt="" />
+          </li>
+          <li class="right-item">
+            <img src="./images/d-3.jpg" alt="" />
+          </li>
+          <li class="right-item">
+            <img src="./images/d-4.jpg" alt="" />
+          </li>
+        </ul>
+        <select
+          class="form-control"
+          id="spec_num0"
+          name="spec_num"
+          onchange="document.getElementById('input0').value=$('#spec_num0 option:selected').text()"
+        >
+          <option>TOP</option>
+          <option>友情链接</option>
+        </select>
+      </div>
+    </footer>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script>
+      $(".navbox>.navlist>li").click(function () {
+        //点击导航栏
+        var index = $(this).index(); //获取导航栏的下标
+        // console.log(index);
+        $(".navlist").each(function (e) {
+          $(this)
+            .find("li")
+            .eq(index)
+            .addClass("on")
+            .siblings("li")
+            .removeClass("on");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /*page*/
+      .pageout {
+        text-align: center;
+        padding-bottom: 5px;
+        clear: both;
+        overflow: hidden;
+      }
+      .page {
+        display: inline-block;
+        *display: inline;
+        *zoom: 1;
+      }
+      .page {
+        vertical-align: middle;
+        text-align: center;
+        margin: 0 auto;
+        color: #000;
+        height: 32px;
+        line-height: 32px;
+        margin-top: 50px;
+      }
+      .page span {
+        color: #000;
+        float: left;
+      }
+      .page span em {
+        color: #de064f;
+      }
+      .page span.pages_num {
+        margin-right: 10px;
+      }
+      .page a {
+        float: left;
+        width: 32px;
+        color: #000;
+        margin: 0 1px;
+        border-radius: 10px;
+      }
+      .page a.on {
+        color: #91663c;
+      }
+      .page a.prev {
+        margin: 0;
+        margin-right: 30px;
+      }
+      .page a.next {
+        margin: 0;
+        margin-left: 30px;
+      }
+      .page a.prev,
+      .page a.next {
+        width: 110px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        background: #91663c;
+        color: #fff;
+      }
+      .page a.first {
+        background: url(../images/page_first.png) center center no-repeat;
+        text-indent: -10000px;
+        margin: 0;
+        margin-right: 2px;
+      }
+      .page a.last {
+        background: url(../images/page_last.png) center center no-repeat;
+        text-indent: -10000px;
+        margin: 0;
+        margin-left: 2px;
+      }
+      .page a.prev.no {
+      }
+      .page a.next.no {
+      }
+
+      .page input.go {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        text-align: center;
+        width: 44px;
+        background: #de064f;
+        color: #fff;
+        height: 44px;
+        line-height: 44px;
+        font-family: "Arial";
+        font-weight: bold;
+        border-radius: 10px;
+      }
+      .page input.go:hover {
+        color: #fff !important;
+      }
+      .page a.prev:hover,
+      .page a.next:hover {
+        color: #fff !important;
+        opacity: 0.8;
+      }
+      .page .txtnum {
+      }
+      .page .txtnum input {
+        text-align: center;
+        width: 44px;
+        height: 44px;
+        line-height: 44px;
+        box-sizing: border-box;
+        background: none;
+        border: 1px solid #d1d3d2;
+        border-radius: 10px;
+        margin-right: 3px;
+        margin-left: 35px;
+      }
+
+      .total,
+      .page a.first,
+      .page a.last,
+      .page span.pages_num {
+        font-weight: bold;
+      }
+      .page a.num {
+        font-family: "Arial";
+      }
+
+      @media only screen and (max-width: 1024px) {
+        .page {
+          margin-top: 30px;
+        }
+        .page,
+        .page .txtnum input {
+          height: 36px;
+          line-height: 36px;
+        }
+        .page input.go {
+          width: 36px;
+          height: 36px;
+          line-height: 36px;
+        }
+        .page a.prev {
+          background: url(../images/page_prev.png) center center no-repeat;
+          text-indent: -10000px;
+          margin-left: 0;
+          margin-right: 14px;
+        }
+        .page a.next {
+          background: url(../images/page_next.png) center center no-repeat;
+          text-indent: -10000px;
+          margin-left: 14px;
+        }
+        .page a.prev,
+        .page a.next {
+          width: 40px;
+          height: 36px;
+        }
+        .page span {
+          display: none;
+        }
+        .page a {
+          width: 36px;
+          border: 1px solid #d1d3d2;
+        }
+        .page a.on {
+          background: #91663c;
+          color: #fff;
+          border: 1px solid #91663c;
+        }
+      }
+      @media only screen and (max-width: 767px) {
+        .page {
+          margin-top: 20px;
+        }
+        .page a {
+          display: none;
+          font-weight: normal;
+        }
+        .page a.prev,
+        .page a.next {
+          display: block;
+          display: inline-block;
+        }
+        .total {
+          display: none;
+        }
+        .page a.on {
+          display: inline-block;
+        }
+        .page .txtnum input {
+          width: 50px;
+          border: 1px solid #838383;
+          margin-left: 10px;
+        }
+        .page a {
+          width: 36px;
+          height: 36px;
+        }
+        .page a.prev {
+          margin-right: 5px;
+        }
+        .page a.next {
+          margin-left: 5px;
+        }
+      }
+
+      @media only screen and (min-width: 1025px) {
+        .page input.go {
+          transition: all 0.3s;
+          -webkit-transition: all 0.3s;
+          -moz-transition: all 0.3s;
+          -o-transition: all 0.3s;
+          -ms-transition: all 0.3s;
+        }
+        .page input.go:hover {
+          opacity: 0.8;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pageout">
+      <!--xhrcms_start_page-->
+      <div class="page">
+        <a href="media_13.html" title="上一页" class="prev no" target="_self"
+          >上一页 &gt;</a
+        >
+        <a href="media_5.html" title="5" class="num" target="_self">5</a
+        ><a href="media_6.html" title="6" class="num" target="_self">6</a
+        ><a href="media_7.html" title="7" class="num" target="_self">7</a
+        ><a href="media_8.html" title="8" class="num" target="_self">8</a
+        ><a href="media_9.html" title="9" class="num on" target="_self">9</a
+        ><a href="media_10.html" title="10" class="num" target="_self">10</a
+        ><a href="media_11.html" title="11" class="num" target="_self">11</a
+        ><a href="media_12.html" title="12" class="num" target="_self">12</a
+        ><a href="media_13.html" title="13" class="num" target="_self">13</a
+        ><a href="javascript:void(0);" title="14" class="num" target="_self"
+          >14</a
+        >
+        <a href="javascript:void(0);" title="下一页" class="next" target="_self"
+          >下一页 &gt;</a
+        >
+      </div>
+      <!--xhrcms_end_page-->
+    </div>
+  </body>
+  <script src="js/jquery.js"></script>
+  <script>
+    $(function () {
+      tabPage({
+        pageMain: "#pageMain",
+        pageNav: "#pageNav",
+        pagePrev: "#prev",
+        pageNext: "#next",
+        curNum: 7 /*每页显示的条数*/,
+        activeClass: "active" /*高亮显示的class*/,
+        ini: 0 /*初始化显示的页面*/,
+      });
+      function tabPage(tabPage) {
+        var pageMain = $(tabPage.pageMain);
+        /*获取内容列表*/
+        var pageNav = $(tabPage.pageNav);
+        /*获取分页*/
+        var pagePrev = $(tabPage.pagePrev);
+        /*上一页*/
+        var pageNext = $(tabPage.pageNext);
+        /*下一页*/
+
+        var curNum = tabPage.curNum;
+        /*每页显示数*/
+        var len = Math.ceil(pageMain.find("li").length / curNum);
+        /*计算总页数*/
+        console.log(len);
+        var pageList = "";
+        /*生成页码*/
+        var iNum = 0;
+        /*当前的索引值*/
+
+        for (var i = 0; i < len; i++) {
+          pageList += '<a href="javascript:;">' + (i + 1) + "</a>";
+        }
+        pageNav.html(pageList);
+        /*头一页加高亮显示*/
+        pageNav.find("a:first").addClass(tabPage.activeClass);
+
+        /*******标签页的点击事件*******/
+        pageNav.find("a").each(function () {
+          $(this).click(function () {
+            pageNav.find("a").removeClass(tabPage.activeClass);
+            $(this).addClass(tabPage.activeClass);
+            iNum = $(this).index();
+            $(pageMain).find("li").hide();
+            for (
+              var i = ($(this).html() - 1) * curNum;
+              i < $(this).html() * curNum;
+              i++
+            ) {
+              $(pageMain).find("li").eq(i).show();
+            }
+          });
+        });
+
+        $(pageMain).find("li").hide();
+        /************首页的显示*********/
+        for (var i = 0; i < curNum; i++) {
+          $(pageMain).find("li").eq(i).show();
+        }
+
+        /*下一页*/
+        pageNext.click(function () {
+          $(pageMain).find("li").hide();
+          if (iNum == len - 1) {
+            alert("已经是最后一页");
+            for (var i = (len - 1) * curNum; i < len * curNum; i++) {
+              $(pageMain).find("li").eq(i).show();
+            }
+            return false;
+          } else {
+            pageNav.find("a").removeClass(tabPage.activeClass);
+            iNum++;
+            pageNav.find("a").eq(iNum).addClass(tabPage.activeClass);
+            //                    ini(iNum);
+          }
+          for (var i = iNum * curNum; i < (iNum + 1) * curNum; i++) {
+            $(pageMain).find("li").eq(i).show();
+          }
+        });
+        /*上一页*/
+        pagePrev.click(function () {
+          $(pageMain).find("li").hide();
+          if (iNum == 0) {
+            alert("当前是第一页");
+            for (var i = 0; i < curNum; i++) {
+              $(pageMain).find("li").eq(i).show();
+            }
+            return false;
+          } else {
+            pageNav.find("a").removeClass(tabPage.activeClass);
+            iNum--;
+            pageNav.find("a").eq(iNum).addClass(tabPage.activeClass);
+          }
+          for (var i = iNum * curNum; i < (iNum + 1) * curNum; i++) {
+            $(pageMain).find("li").eq(i).show();
+          }
+        });
+      }
+    });
+  </script>
+</html>

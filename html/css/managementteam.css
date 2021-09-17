@@ -1,0 +1,169 @@
+@charset "utf-8";
+.main .title{
+	display: none;
+	font-size: 20px;
+	color: #ec6c1f;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	padding: 32px 0 20px;
+}
+.manager-list{
+	width: 80%;
+	margin: 0 auto;
+	padding: 90px 0 52px;
+	overflow: hidden;
+}
+.manager-list li{
+	float: left;
+	width: 22%;
+	margin: 0 4% 4% 0;
+	cursor: pointer;
+}
+.manager-list li:nth-child(4n){
+	margin-right: 0;
+}
+.manager-list .avatar{
+	display: block;
+	width: 100%;
+	/* width: 326px;
+	height: 275px; */
+}
+.manager-list .related{
+	height: 30px;
+	background: #fbdbe0;
+	padding: 10px 15px;
+}
+.manager-list .related label{
+	font-size: 18px;
+	height: 30px;
+	line-height: 30px;
+}
+.manager-list .related span{
+	display: none;
+	font-size: 14px;
+}
+.manager-list .related .arrow-b{
+	float: right;
+	width: 48px;
+	height: 25px;
+	line-height: 25px;
+	padding-top: 5px;
+	background: #fff;
+	border-radius: 20px;
+	text-align: center;
+	font-weight: bold;
+	color: #808080;
+}
+.model{
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.5);
+	z-index: 100;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.model-body{
+	position: relative;
+	background: #fff;
+	width: 55%;
+	margin: 60px auto;
+}
+.model-body .close-btn{
+	position: absolute;
+	right: 16px;
+	top: 12px;
+	width: 30px;
+	height: 30px;
+	background: url(../images/icon-close.png) no-repeat;
+	background-size: 30px 30px;
+}
+.model-body .related{
+	background: #fdecef;
+	overflow: hidden;
+}
+.model-body .avatar{
+	float: left;
+	width: 28%;
+}
+.model-body .zw-container{
+	height: 100%;
+	padding: 7% 0 0 32%;
+	font-size: 14px;
+}
+.model-body .zw-container label{
+	display: block;
+	font-size: 24px;
+	color: #ec6c1f;
+	margin-bottom: 10px;
+}
+.model-body .intro{
+	font-size: 14px;
+	padding: 40px 40px 50px;
+	color: #666;
+	line-height: 28px;
+}
+.model-body .intro p{
+	margin-bottom: 15px;
+}
+@media only screen and (max-width:1024px) {
+	.main .title{
+		display: block;
+	}
+	.manager-list{
+		padding: 0;
+	}
+	.manager-list li{
+		width: 48%;
+		margin-right: 4%;
+	}
+	.manager-list li:nth-child(2n){
+		margin-right: 0;
+	}
+	.manager-list .related{
+		background: none;
+		height: auto;
+		padding: 10px 0;
+	}
+	.manager-list .related .arrow-b{
+		display: none;
+	}
+	.manager-list .related label,
+	.manager-list .related span{
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+	.manager-list .related label{
+		display: block;
+		font-size: 16px;
+	}
+	.manager-list .related span{
+		display: block;
+	}
+	.model-body{
+		width: 90%;
+	}
+	.model-body .close-btn{
+		width: 26px;
+		height: 26px;
+		background-size: 26px 26px;
+	}
+	.model-body .avatar{
+		float: none;
+		width: 200px;
+	}
+	.model-body .zw-container{
+		padding: 20px 30px 30px 30px;
+	}
+	.model-body .zw-container label{
+		color: #333;
+	}
+}
+
+
+
