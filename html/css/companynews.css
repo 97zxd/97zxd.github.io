@@ -106,45 +106,47 @@
   }
   .main .search_phone .search_time {
     align-items: center;
-    line-height: 50px;
+    /* line-height: 50px; */
     display: flex;
     height: 50px;
     width: 40%;
   }
+  .main .search_phone form {
+    height: 70%;
+    border-bottom: 1px solid #999999;
+  }
   .main .search_phone input {
-    line-height: 50px;
-    height: 50%;
+    /* line-height: 50px; */
+    height: 100%;
     border: none;
-    vertical-align: middle;
+    width: 100%;
+
+    /* vertical-align: middle; */
     background-color: transparent;
     /* background-color: #ec6c1f; */
-    border-bottom: 1px solid #999999;
+    /* border-bottom: 1px solid #999999; */
     outline: none;
     -webkit-appearance: none;
   }
   .main .search_phone input::-webkit-search-cancel-button {
     display: none;
   }
-  .main .search_phone .search_time input {
-    width: 90%;
-  }
+
   .main .search_phone .search_keyword {
-    margin-left: 10px;
+    margin-left: 20px;
     display: flex;
-    text-align: center;
     height: 50px;
     width: 60%;
     align-items: center;
-    line-height: 50px;
+    /* line-height: 50px; */
   }
   .main .search_phone .search_keyword img {
     width: 30px;
     height: 30px;
+    margin-right: 10px;
     vertical-align: middle;
   }
-  .main .search_phone .search_keyword input {
-    width: 70%;
-  }
+
   .main .content {
     margin: 0 auto;
     margin-top: 35px;
