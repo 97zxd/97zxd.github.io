@@ -33,7 +33,7 @@
       <div class="img"><img src="" alt="" /></div>
       <div class="search_phone">
         <div class="search_time">
-          <form id="search_from" action="">
+          <form id="search_from_time" action="">
             <input
               autocomplete="off"
               name="time"
@@ -47,7 +47,7 @@
         <div class="search_keyword">
           <img src="./images/search.jpg" alt="" />
           <!-- <input type="search" placeholder="关键词" name="" id="" /> -->
-          <form id="search_from" action="">
+          <form id="search_from_key" action="">
             <input type="search" name="keyword" placeholder="关键词" />
           </form>
           <span class="clear">&times</span>
@@ -318,9 +318,15 @@
         $(this).parent().find("input").val("");
       });
 
-      $("#search_from").submit(function () {
+      //时间搜索
+      $("#search_from_time").submit(function () {
         // getlist();
-        alert("搜索");
+        alert("时间搜索");
+      });
+      //关键词搜索
+      $("#search_from_key").submit(function () {
+        // getlist();
+        alert("关键词搜索");
         //event.preventDefault();
       });
     </script>
