@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+    <!-- <script src="jquery-1.7.min.js" type="text/javascript"></script> -->
+    <script src="js/jquery.js"></script>
+    <style type="text/css">
+      body {
+        background: #000;
+      }
+      .rb_bottom,
+      .rb_bottom .fy_y,
+      .rb_bottom .pnbtn,
+      .rb_bottom .previous,
+      .rb_bottom .next {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .fy_y {
+        width: 24px;
+        height: 24px;
+        box-sizing: border-box;
+        background: #fff;
+        border: 1px solid #7baaa0;
+        border-radius: 50%;
+        color: #4f4f4f;
+        font-size: 14px;
+        font-weight: 500;
+        margin-right: 12px;
+        cursor: pointer;
+      }
+      .fy_d {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #fff;
+        margin-right: 12px;
+      }
+      .selected {
+        background: #164c86;
+        color: #fff;
+        border: 0;
+      }
+      .pnbtn,
+      .previous,
+      .next {
+        width: 62px;
+        height: 31px;
+        box-sizing: border-box;
+        border: 3px solid #fff;
+        border-radius: 10px;
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+        color: #fff;
+      }
+      .previous {
+        margin: 0 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rb_bottom"></div>
+  </body>
+  <script>
+    //总页数
+    var total = 20;
+    $(function () {
+      //页面初始化调用 生成页码
+      makePage(total, 1);
+    });
+    //生成页码函数
+    function makePage(total, page) {
+      var pageHtml = "";
+      //点点点的html
+      var ddd =
+        '<div class="fy_d"></div><div class="fy_d"></div><div class="fy_d"></div>';
+
+      function createPage(index) {
+        //单页码生成
+        if (page == index) {
+          //当前页(或选中)样式 多了个selected(换背景色字体色的)
+          pageHtml += '<div class="fy_y selected" >' + page + "</div>";
+        } else {
+          pageHtml +=
+            '<div class="fy_y" onclick="pageClick(this)">' + index + "</div>";
+        }
+      }
+
+      if (total <= 10) {
+        //总页数小于10
+        for (var i = 1; i <= total; i++) {
+          //正常生成排列
+          createPage(i);
+        }
+      } else {
+        if (page <= 4) {
+          //总页数大于10且当前页远离总页数(小于4)
+          for (var i = 1; i <= 4 + 1; i++) {
+            //显示1-5
+            createPage(i);
+          }
+          //三个点...
+          pageHtml += ddd;
+          //三个点后面 生成最后一个页数
+          createPage(total);
+        } else if (page > total - 4) {
+          //总页数大于10且当前页接近总页数(大于总页数-4)
+          //第一页
+          createPage(1);
+          //三个点...
+          pageHtml += ddd;
+          //生成最后5个页数
+          for (var i = total - 4; i <= total; i++) {
+            createPage(i);
+          }
+        } else {
+          //除开上面两个情况 当前页在中间
+          //页数1
+          createPage(1);
+          //三个点...
+          pageHtml += ddd;
+          //生成当前页和 前跟后一个页数
+          for (var i = page - 1; i <= page + 1; i++) {
+            createPage(i);
+          }
+          //三个点...
+          pageHtml += ddd;
+          //最后一个页数
+          createPage(total);
+        }
+      }
+
+      if (page > 1 && total > 1) {
+        // 上一页
+        pageHtml =
+          '<div class="previous" onclick="previous()">上一页</div>' + pageHtml;
+      } else {
+        pageHtml = '<div class="previous">上一页</div>' + pageHtml;
+      }
+      if (page < total && total > 1) {
+        // 下一页
+        pageHtml += '<div class="next" onclick="next()">下一页</div>';
+      } else {
+        pageHtml += '<div class="next">下一页</div>';
+      }
+      //赋值生成html
+      $(".rb_bottom").html(pageHtml);
+    }
+    //上一页点击事件
+    function previous() {
+      //获取当前页
+      var page = $(".rb_bottom>.selected").text();
+      if (page <= 1) {
+        return;
+      }
+      makePage(total, page - 1);
+    }
+    //下一页点击事件
+    function next() {
+      //获取当前页
+      var page = $(".rb_bottom>.selected").text();
+      if (page >= total) {
+        return;
+      }
+      makePage(total, page * 1 + 1);
+    }
+    //直接点击页数事件
+    function pageClick(that) {
+      var page = $(that).html();
+      makePage(total, page * 1);
+    }
+  </script>
+</html>
