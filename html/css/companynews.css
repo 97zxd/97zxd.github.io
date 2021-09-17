@@ -117,7 +117,6 @@
     border: none;
     vertical-align: middle;
     background-color: transparent;
-    border-bottom: 1px solid #999999;
     outline: none;
   }
   .main .search_phone .search_time input {
