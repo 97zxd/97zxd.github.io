@@ -4,13 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1.0,user-scalable=no"
-    />
-
     <title>Document</title>
     <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/pagination.css" />
     <link rel="stylesheet" href="css/companynews.css" />
   </head>
   <body>
@@ -30,27 +26,26 @@
       </div>
     </header>
     <div class="main">
-      <div class="img"><img src="" alt="" /></div>
+      <img src="images/new-banner.jpg" alt="" />
       <div class="search_phone">
         <div class="search_time">
-          <form id="search_from_time" action="">
-            <input
-              autocomplete="off"
-              name="time"
-              type="search"
-              placeholder="全部日期"
-            />
-          </form>
-          <!-- <input type="search" placeholder="全部日期" name="" id="" /> -->
+          <input
+            id="time"
+            name="time"
+            readonly="readonly"
+            placeholder="全部日期"
+          />
           <span class="clear">&times</span>
         </div>
         <div class="search_keyword">
-          <img src="./images/search.jpg" alt="" />
-          <!-- <input type="search" placeholder="关键词" name="" id="" /> -->
-          <form id="search_from_key" action="">
-            <input type="search" name="keyword" placeholder="关键词" />
-          </form>
+          <input
+            type="text"
+            autocomplete="off"
+            name="keyword"
+            placeholder="关键词"
+          />
           <span class="clear">&times</span>
+          <img class="search" src="./images/search.jpg" alt="" />
         </div>
       </div>
       <div class="content">
@@ -176,17 +171,7 @@
             </div>
           </div>
         </div>
-        <div class="pagination">
-          <div class="prev"><img src="./images/prev.jpg" alt="" /></div>
-          <ul>
-            <li class="nowpage"><a href="javascript:;">1</a></li>
-            <li><a href="javascript:;">2</a></li>
-            <li><a href="javascript:;">3</a></li>
-            <li><a href="javascript:;">4</a></li>
-            <li><a href="javascript:;">5</a></li>
-          </ul>
-          <div class="next"><img src="./images/next.jpg" alt="" /></div>
-        </div>
+        <div class="pagination"></div>
       </div>
     </div>
     <footer>
@@ -266,68 +251,46 @@
     </footer>
     <script src="js/jquery.js"></script>
     <script src="js/common.js"></script>
+    <script src="js/pagination.js"></script>
+    <script src="js/datePicker.js"></script>
     <script>
-      $(".main>.content>.pagination>ul>li").click(function () {
-        //分页点击页码
-        var index = $(this).index();
-        $(".pagination>ul").each(function (e) {
-          $(this)
-            .find("li")
-            .eq(index)
-            .addClass("nowpage")
-            .siblings("li")
-            .removeClass("nowpage");
-        });
-      });
-
-      $(".prev").click(function () {
-        //上一页
-        var index = $(".main>.content>.pagination>ul>li.nowpage").index(
-          ".main>.content>.pagination>ul>li"
-        );
-        if (index > 0) {
-          index--;
-          $(".pagination>ul li")
-            .eq(index)
-            .addClass("nowpage")
-            .siblings("li")
-            .removeClass("nowpage");
-        } else {
-          alert("已经是第一页了");
-        }
-      });
-
-      $(".next").click(function () {
-        //下一页
-        var index = $(".main>.content>.pagination>ul>li.nowpage").index(
-          ".main>.content>.pagination>ul>li"
-        );
-        if (index < $(".main>.content>.pagination>ul>li").length - 1) {
-          index++;
-          $(".pagination>ul li")
-            .eq(index)
-            .addClass("nowpage")
-            .siblings("li")
-            .removeClass("nowpage");
-        } else {
-          alert("已经是最后一页了");
-        }
-      });
+      //总页数
+      var total = 20;
 
       $(".clear").click(function () {
         $(this).parent().find("input").val("");
       });
-
       //时间搜索
       $("#search_from_time").submit(function () {
-        // getlist();
-        alert("时间搜索");
+        // getnewlist();
+        // alert("时间搜索");
+        console.log("Hahah");
+        location.href =
+          "salebuyerList.html?param1=aaa&param2=" + $("#name").val();
       });
       //关键词搜索
       $("#search_from_key").submit(function () {
-        // getlist();
-        alert("关键词搜索");
+        // getnewlist();
+        // alert("关键词搜索");
         //event.preventDefault();
+      });
+      var calendar = new datePicker();
+      calendar.init({
+        trigger: "#time" /*按钮选择器，用于触发弹出插件*/,
+        type: "date" /*模式：date日期；datetime日期时间；time时间；ym年月；*/,
+        minDate: "1900-1-1" /*最小日期*/,
+        maxDate: "2100-12-31" /*最大日期*/,
+        onSubmit: function () {
+          /*确认时触发事件*/
+          var theSelectData = calendar.value;
+        },
+        onClose: function () {
+          /*取消时触发事件*/
+        },
+      });
+
+      $(".search").click(function () {
+        alert("提交搜索");
       });
     </script>
   </body>

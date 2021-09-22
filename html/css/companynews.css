@@ -6,7 +6,7 @@
   margin-top: 75px;
   width: 60%;
 }
-.main .img {
+.main img {
   display: none;
 }
 .main .search_phone {
@@ -28,57 +28,30 @@
 .main .content .newslist .newitem .newitem-info a .info-img {
   display: none;
 }
-
 .main .content .pagination {
   justify-content: center;
   display: flex;
   margin-bottom: 20px;
 }
-.main .content .pagination .prev:hover,
-.main .content .pagination .next:hover {
-  cursor: pointer;
-}
-.main .content .pagination ul {
-  align-items: baseline;
-  justify-content: center;
-  display: flex;
-}
-.main .content .pagination ul li {
-  width: 30px;
-  text-align: center;
-  font-size: 17px;
-}
-.main .content .pagination ul li a {
-  color: #999999;
-}
-.main .content .pagination ul li:before {
-  content: "|";
-  float: left;
-  color: #999999;
-}
-.main .content .pagination ul li:first-child:before {
-  display: none;
-}
-.nowpage a {
-  font-size: 20px !important;
-  color: #666666 !important;
-}
 
 @media only screen and (max-width: 1024px) {
-  .main .img {
+  .main img {
     display: block;
-    height: 180px;
     width: 100%;
   }
-  .main .img img {
-    width: 100%;
-    height: 100%;
-  }
+
   .main .content .pagination ul li {
     display: none;
   }
   .main .content .pagination ul .nowpage {
     display: block;
+  }
+  .main .content .pagination .fy_y,
+  .main .content .pagination .fy_d {
+    display: none;
+  }
+  .main .content .pagination .selected {
+    display: flex;
   }
   .main .content .pagination ul .nowpage::before {
     content: "";
@@ -99,7 +72,6 @@
     cursor: pointer;
     color: #999999;
     line-height: 50%;
-    /* text-align: end; */
     align-items: bottom;
     vertical-align: bottom;
     align-items: center;
@@ -110,26 +82,19 @@
     height: 50px;
     width: 40%;
   }
-  .main .search_phone form {
-    height: 70%;
-    border-bottom: 1px solid #999999;
-  }
-  .main .search_phone input {
-    /* line-height: 50px; */
-    height: 100%;
-    border: none;
-    width: 100%;
 
-    /* vertical-align: middle; */
+  .main .search_phone input {
+    border: none;
     background-color: transparent;
-    /* border-bottom: 1px solid #999999; */
     outline: none;
     -webkit-appearance: none;
+    width: 100%;
+    height: 70%;
+    border-bottom: 1px solid #999999;
   }
   .main .search_phone input::-webkit-search-cancel-button {
     display: none;
   }
-
   .main .search_phone .search_keyword {
     margin-left: 20px;
     display: flex;
@@ -138,9 +103,10 @@
     align-items: center;
   }
   .main .search_phone .search_keyword img {
+    float: right;
     width: 30px;
     height: 30px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     vertical-align: middle;
   }
   .main .content {
